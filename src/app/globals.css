@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Hubot Sans";
+  font-display: block;
+  src: url("/fonts/Hubot-Sans.woff2");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  width: 100%;
+  position: relative;
+  background: transparent;
+
+  @apply font-hubotSans;
+}
+
+html,
+:root,
+body {
+  height: 100%;
+}
+
+body {
+  @apply bg-white dark:bg-[#010409];
+}
+
+a,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+button,
+img {
+  opacity: 0;
+}
+
+.dark::-webkit-scrollbar {
+  width: 20px;
+}
+
+.dark::-webkit-scrollbar-track {
+  background: black;
+}
+
+.dark::-webkit-scrollbar-thumb {
+  background-color: black;
+  border-radius: 20px;
+}
+
+.dark {
+  scrollbar-width: 20px;
+  scrollbar-color: rgb(148 163 184) black;
+}
+
+.border {
+  @apply border-slate-300 dark:border-[#30363D] border-[1px];
+}
+
+.border-l {
+  @apply border-slate-300 dark:border-[#30363D] border-l-[1px];
+}
+
+.border-r {
+  @apply border-slate-300 dark:border-[#30363D] border-r-[1px];
+}
+
+.border-t {
+  @apply border-slate-300 dark:border-[#30363D] border-t-[1px];
+}
+
+.border-b {
+  @apply border-slate-300 dark:border-[#30363D] border-b-[1px];
+}
+
+.shine {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.2) 0%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  background-size: 200% 200%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+  animation: shineAnimation 2s linear infinite;
+}
+
+@keyframes shineAnimation {
+  0% {
+    background-position-x: -200%;
+  }
+  25% {
+    background-position-x: 0%;
+  }
+  50% {
+    background-position-x: 200%;
+  }
+  75% {
+    background-position-x: 0%;
+  }
+  100% {
+    background-position-x: -200%;
+  }
+}
