@@ -65,7 +65,7 @@ const SideBar = () => {
       </div>
 
       <div>
-        <Heading headingText={`📧 Email`} headingSize={"smallest"} />
+        <Paragraph paragraphText={`📧 Email`} paragraphSize={"smallest"} />
         <Paragraph
           paragraphText={
             <Link href="mailto: lakshyamahawar.official@gmail.com">
@@ -74,11 +74,11 @@ const SideBar = () => {
           }
           paragraphSize={"small"}
         />
-        <Heading headingText={`📞 Phone`} headingSize={"smallest"} />
+        <Paragraph paragraphText={`📞 Phone`} paragraphSize={"smallest"} />
         <Paragraph paragraphText={"+91 7688XXXX38"} paragraphSize={"small"} />
 
         <div className="flex flex-col lg:items-start">
-          <Heading headingText={`🔗 Links`} headingSize={"smallest"} />
+          <Paragraph paragraphText={`🔗 Links`} paragraphSize={"smallest"} />
           <ul className="flex justify-start items-center gap-4 py-2">
             {socialLinks.map((link, idx) => (
               <abbr title={link.name} key={idx} className="w-auto">

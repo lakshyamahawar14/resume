@@ -49,7 +49,7 @@ const Interests = () => {
             ref={(el) => {
               tagRefs.current[index] = el;
             }}
-            className="tag-container w-auto opacity-0 translate-x-[100px]"
+            className="tag-container w-auto opacity-0 translate-x-[100px] flex"
           >
             <Tag tag={interest} />
           </div>
