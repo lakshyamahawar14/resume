@@ -45,7 +45,7 @@ body {
 
 .loadable {
   position: relative;
-  z-index: 2;
+  z-index: 15;
 }
 
 .loadable.fade-in::before {
@@ -53,14 +53,12 @@ body {
   opacity: 0;
 }
 
-a,
 p,
 span,
 h1,
 h2,
 h3,
 h4,
-button,
 img {
   opacity: 0;
 }
