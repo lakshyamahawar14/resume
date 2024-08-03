@@ -5,22 +5,23 @@ import gsap from "gsap";
 
 const TextAnimation = () => {
   useEffect(() => {
-    const elements = document.querySelectorAll("p, h1");
-
-    elements.forEach((el) => {
-      el.classList.add("fade-in");
-    });
-
-    const otherElements = document.querySelectorAll(
-      "a, span, h2, h3, h4, button, img"
+    const textualElements = document.querySelectorAll(
+      "a, span, p, h1, h2, h3, h4, button, img"
     );
-    gsap.to(otherElements, {
+    gsap.to(textualElements, {
       opacity: 1,
       duration: 0.2,
       stagger: 0,
       ease: "power1.out",
+      onComplete() {
+        const sectionalElements = document.querySelectorAll(".loadable");
+
+        sectionalElements.forEach((el) => {
+          el.classList.add("fade-in");
+        });
+      },
     });
-  }, []);
+  });
 
   return <></>;
 };

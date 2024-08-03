@@ -32,21 +32,23 @@ const internships = [
 
 const Internships = () => {
   return (
-    <div className="flex flex-col w-full">
+    <section className="flex flex-col w-full">
       <Heading headingText={"Internship"} headingSize="small" />
-      {internships.map((intern, index) => (
-        <Card
-          key={index}
-          start={intern.start}
-          end={intern.end}
-          period={intern.period}
-          role={intern.role}
-          organization={intern.organization}
-          details={intern.details}
-          tools={intern.tools}
-        />
-      ))}
-    </div>
+      <div className="loadable grid grid-cols-1 gap-4 my-2">
+        {internships.map((intern, index) => (
+          <Card
+            key={index}
+            start={intern.start}
+            end={intern.end}
+            period={intern.period}
+            role={intern.role}
+            organization={intern.organization}
+            details={intern.details}
+            tools={intern.tools}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 

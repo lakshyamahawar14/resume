@@ -34,24 +34,26 @@ const porsList = [
 
 const PORs = () => {
   return (
-    <div className="flex flex-col w-full">
+    <section className="flex flex-col w-full">
       <Heading
         headingText={"Position of Responsibilities"}
         headingSize="small"
       />
-      {porsList.map((por, index) => (
-        <Card
-          key={index}
-          start={por.start}
-          end={por.end}
-          period={por.period}
-          role={por.role}
-          organization={por.organization}
-          details={por.details}
-          tools={por.tools}
-        />
-      ))}
-    </div>
+      <div className="loadable grid grid-cols-1 gap-4 my-2">
+        {porsList.map((por, index) => (
+          <Card
+            key={index}
+            start={por.start}
+            end={por.end}
+            period={por.period}
+            role={por.role}
+            organization={por.organization}
+            details={por.details}
+            tools={por.tools}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 

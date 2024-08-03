@@ -62,7 +62,7 @@ const Card: React.FC<CardProps> = (props) => {
   return (
     <div
       ref={cardRef}
-      className="bg-white dark:bg-[#161B22] border rounded-lg p-4 w-full my-2 flex flex-col gap-2"
+      className="loadable bg-white dark:bg-[#161B22] border rounded-lg p-4 w-full my-2 flex flex-col gap-2"
     >
       <div className="flex flex-col md:flex-row justify-between items-start">
         <div className="flex flex-col">

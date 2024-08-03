@@ -41,9 +41,9 @@ const socialLinks = [
 
 const SideBar = () => {
   return (
-    <div className="lg:sticky z-[20] top-0 left-0 flex flex-col md:flex-col lg:flex-col justify-center items-center gap-4 lg:max-w-[300px] h-full lg:min-h-screen p-6 bg-white dark:bg-[#0D1117] border-b lg:border-b-0 lg:border-r">
+    <section className="lg:sticky z-[20] top-0 left-0 flex flex-col md:flex-col lg:flex-col justify-center items-center gap-4 lg:max-w-[300px] h-full lg:min-h-screen p-6 bg-white dark:bg-[#0D1117] border-b lg:border-b-0 lg:border-r">
       <div className="flex flex-col sm:flex-row lg:flex-col justify-center items-center lg:items-center gap-4">
-        <div className="flex justify-center items-center rounded-full w-[150px] lg:w-[200px] shrink-0">
+        <div className="loadable flex justify-center items-center rounded-full w-[150px] lg:w-[200px] shrink-0">
           <CustomImage
             src="/images/pfp_linkedin.jpg"
             width={400}
@@ -53,7 +53,8 @@ const SideBar = () => {
             className="rounded-full"
           />
         </div>
-        <div>
+
+        <div className="loadable">
           <Heading headingText={"Lakshya Mahawar"} headingSize={"small"} />
           <Paragraph
             paragraphText={
@@ -64,7 +65,7 @@ const SideBar = () => {
         </div>
       </div>
 
-      <div>
+      <div className="loadable">
         <Paragraph paragraphText={`📧 Email`} paragraphSize={"smallest"} />
         <Paragraph
           paragraphText={
@@ -98,7 +99,7 @@ const SideBar = () => {
           <DarkMode />
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

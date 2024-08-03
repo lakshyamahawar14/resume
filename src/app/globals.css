@@ -30,18 +30,7 @@ body {
   @apply bg-white dark:bg-[#010409];
 }
 
-a,
-span,
-h2,
-h3,
-h4,
-button,
-img {
-  opacity: 0;
-}
-
-p::before,
-h1::before {
+.loadable::before {
   content: "";
   position: absolute;
   top: 0;
@@ -50,19 +39,29 @@ h1::before {
   height: 100%;
   opacity: 1;
   transition: background-color 1s ease-out, opacity 1s ease-out;
-  z-index: 1;
+  z-index: 10;
   @apply dark:bg-[#161B22];
 }
 
-p,
-h1 {
+.loadable {
   position: relative;
   z-index: 2;
 }
 
-p.fade-in::before,
-h1.fade-in::before {
+.loadable.fade-in::before {
   background-color: rgba(255, 0, 0, 0);
+  opacity: 0;
+}
+
+a,
+p,
+span,
+h1,
+h2,
+h3,
+h4,
+button,
+img {
   opacity: 0;
 }
 
@@ -106,37 +105,4 @@ h1 {
 
 .border-b {
   @apply border-slate-300 dark:border-[#30363D] border-b-[1px];
-}
-
-.shine {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(255, 255, 255, 0) 50%,
-    rgba(255, 255, 255, 0.2) 100%
-  );
-  background-size: 200% 200%;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  pointer-events: none;
-  animation: shineAnimation 2s linear infinite;
-}
-
-@keyframes shineAnimation {
-  0% {
-    background-position-x: -200%;
-  }
-  25% {
-    background-position-x: 0%;
-  }
-  50% {
-    background-position-x: 200%;
-  }
-  75% {
-    background-position-x: 0%;
-  }
-  100% {
-    background-position-x: -200%;
-  }
 }

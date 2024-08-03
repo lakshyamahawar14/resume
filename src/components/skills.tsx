@@ -66,9 +66,9 @@ const Skills = () => {
   }, []);
 
   return (
-    <div className="flex flex-col w-full">
+    <section className="flex flex-col w-full">
       <Heading headingText={"Skills"} headingSize="small" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 my-2">
+      <div className="loadable grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 my-2">
         {skillsList.map((skill, index) => (
           <div
             key={index}
@@ -107,7 +107,7 @@ const Skills = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

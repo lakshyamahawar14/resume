@@ -40,9 +40,9 @@ const Interests = () => {
   }, []);
 
   return (
-    <div className="flex flex-col overflow-x-hidden">
+    <section className="flex flex-col overflow-x-hidden">
       <Heading headingText={"Area of Interest"} headingSize="small" />
-      <div className="flex flex-wrap gap-2 my-2">
+      <div className="loadable flex flex-wrap gap-2 my-2">
         {interests.map((interest, index) => (
           <div
             key={index}
@@ -55,7 +55,7 @@ const Interests = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -25,9 +25,9 @@ const education = [
 
 const Education = () => {
   return (
-    <div className="flex flex-col w-full">
+    <section className="flex flex-col w-full">
       <Heading headingText={"Education"} headingSize="small" />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(275px,1fr))]  gap-4 my-2">
+      <div className="loadable grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(275px,1fr))] gap-4 my-2">
         {education.map((edu, index) => (
           <div
             key={index}
@@ -65,7 +65,7 @@ const Education = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

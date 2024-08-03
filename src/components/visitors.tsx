@@ -47,16 +47,18 @@ const Visitors = () => {
   const count = updateAndGetVisitorCount();
   unstable_noStore();
   return (
-    <Paragraph
-      paragraphText={
-        <span>
-          Total Visits: <span className="font-bold">{count}</span> (atleast half
-          of them are mine)
-        </span>
-      }
-      paragraphSize="smaller"
-      className="text-center"
-    />
+    <section className="loadable flex justify-center items-center">
+      <Paragraph
+        paragraphText={
+          <span>
+            Total Visits: <span className="font-bold">{count}</span> (atleast
+            half of them are mine)
+          </span>
+        }
+        paragraphSize="smaller"
+        className="text-center"
+      />
+    </section>
   );
 };
 

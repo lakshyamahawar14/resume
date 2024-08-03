@@ -93,22 +93,24 @@ const projects = [
 
 const Projects = () => {
   return (
-    <div className="flex flex-col w-full">
+    <section className="flex flex-col w-full">
       <Heading headingText={"Projects"} headingSize="small" />
-      {projects.map((project, index) => (
-        <Card
-          key={index}
-          start={project.start}
-          end={project.end}
-          period={project.period}
-          organization={project.organization}
-          details={project.details}
-          tools={project.tools}
-          link={project.link}
-          imageSrc={project.imageSrc}
-        />
-      ))}
-    </div>
+      <div className="loadable flex flex-wrap gap-2 my-2">
+        {projects.map((project, index) => (
+          <Card
+            key={index}
+            start={project.start}
+            end={project.end}
+            period={project.period}
+            organization={project.organization}
+            details={project.details}
+            tools={project.tools}
+            link={project.link}
+            imageSrc={project.imageSrc}
+          />
+        ))}
+      </div>
+    </section>
   );
 };
 

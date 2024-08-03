@@ -8,7 +8,7 @@ import Visitors from "./visitors";
 
 const Main = () => {
   return (
-    <div className="p-6 flex flex-col gap-4">
+    <section className="p-6 flex flex-col gap-4">
       <Interests />
       <Education />
       <Skills />
@@ -16,7 +16,7 @@ const Main = () => {
       <Projects />
       <PORs />
       <Visitors />
-    </div>
+    </section>
   );
 };
 
