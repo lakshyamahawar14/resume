@@ -6,7 +6,7 @@ const porsList = [
   {
     start: "Jan 2021",
     end: "July 2021",
-    period: 1,
+    period: 6,
     role: "Volunteer",
     organization: "National Service Scheme, IIT Roorkee",
     details: {
@@ -19,7 +19,7 @@ const porsList = [
   {
     start: "Aug 2021",
     end: "Jan 2022",
-    period: 1,
+    period: 6,
     role: "Web Developer",
     organization: "National Service Scheme, IIT Roorkee",
     details: {
