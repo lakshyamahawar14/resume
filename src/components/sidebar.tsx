@@ -24,18 +24,17 @@ const getIcon = (iconName: string) => {
 
 const SideBar = () => {
   return (
-    <section className="lg:sticky z-[20] top-0 left-0 flex flex-col justify-between items-center gap-6 lg:max-w-[300px] w-full lg:w-auto h-full lg:min-h-screen p-6 bg-white dark:bg-[#161b22] shadow-sm lg:shadow-md">
+    <section className="lg:sticky z-[20] top-0 left-0 flex flex-col justify-start items-center gap-6 lg:max-w-[300px] w-full lg:w-auto h-full lg:min-h-screen p-6 bg-white dark:bg-[#161b22] shadow-sm lg:shadow-md">
       <div className="flex flex-col sm:flex-row lg:flex-col justify-center items-center gap-4 w-full">
         <div className="flex justify-center items-center rounded-full w-[150px] h-[150px] lg:w-[190px] lg:h-[190px] shrink-0 overflow-hidden shadow-sm">
           <Image
             src="/images/profile.webp"
-            width={400}
-            height={400}
+            width={190}
+            height={190}
             priority={true}
             loading="eager"
             decoding="sync"
-            unoptimized={true}
-            alt="pfp"
+            alt="Lakshya Mahawar profile photo"
             className="rounded-full w-full h-full object-cover"
           />
         </div>
@@ -77,15 +76,17 @@ const SideBar = () => {
           </p>
           <ul className="flex justify-start items-center gap-4 py-3 w-full">
             {SOCIAL_LINKS.map((link, idx) => (
-              <abbr title={link.name} key={idx} className="w-auto">
+              <li key={idx} className="list-none">
                 <Link
                   href={link.route}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={link.name}
                   className="flex justify-center items-center dark:text-slate-400 text-slate-600 dark:hover:text-slate-100 hover:text-slate-900"
                 >
                   {getIcon(link.icon)}
                 </Link>
-              </abbr>
+              </li>
             ))}
           </ul>
           <DarkMode />
