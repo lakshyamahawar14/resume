@@ -3,22 +3,24 @@ import {
   INTERESTS,
   EDUCATION,
   SKILLS,
+  EXPERIENCES,
   INTERNSHIPS,
   PROJECTS,
-  PORS,
+  ExperienceItem,
+  ProjectItem,
 } from "@/constants";
 
 const Main = () => {
   return (
     <section className="p-6 md:p-8 flex flex-col gap-6 w-full max-w-5xl">
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[20px] font-bold tracking-tight break-words">
           Area of Interest
         </h1>
         <div className="flex flex-wrap gap-2.5 my-2">
           {INTERESTS.map((interest, index) => (
             <div key={index} className="w-auto flex">
-              <span className="font-medium w-auto px-3.5 py-1.5 dark:bg-[#161b22] bg-white shadow-sm dark:text-slate-200 text-slate-700 text-[0.88rem] rounded-md">
+              <span className="font-medium w-auto px-3.5 py-1.5 dark:bg-[#161b22] bg-white shadow-sm dark:text-slate-200 text-slate-700 text-[14px] rounded-md">
                 {interest}
               </span>
             </div>
@@ -27,7 +29,7 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[20px] font-bold tracking-tight break-words">
           Education
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(275px,1fr))] gap-4 my-2">
@@ -37,17 +39,17 @@ const Main = () => {
               className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-5 w-full flex flex-col justify-between"
             >
               <div className="flex flex-col gap-1.5">
-                <h1 className="dark:text-sky-400 text-sky-600 text-[0.95rem] md:text-[1rem] font-semibold break-words">
+                <h2 className="dark:text-sky-400 text-sky-600 text-[16px] font-semibold break-words">
                   {edu.examination}
-                </h1>
-                <p className="dark:text-slate-200 text-slate-800 text-[0.9rem] font-medium leading-snug break-words">
+                </h2>
+                <p className="dark:text-slate-200 text-slate-800 text-[14px] font-medium leading-snug break-words">
                   {edu.institution}
                 </p>
-                <p className="dark:text-slate-400 text-slate-500 text-[0.85rem] font-normal break-words">
+                <p className="dark:text-slate-400 text-slate-500 text-[12px] font-normal break-words">
                   {edu.year}
                 </p>
               </div>
-              <p className="dark:text-slate-400 text-slate-600 text-[0.85rem] font-normal break-words mt-3 pt-2 border-t border-slate-100 dark:border-[#21262d]">
+              <p className="dark:text-slate-400 text-slate-600 text-[12px] font-normal break-words mt-3 pt-2 border-t border-slate-100 dark:border-[#21262d]">
                 <span>
                   {edu.score[edu.score.length - 1] === "%"
                     ? "Percentage: "
@@ -61,7 +63,7 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[20px] font-bold tracking-tight break-words">
           Skills
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 my-2">
@@ -71,14 +73,14 @@ const Main = () => {
               className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-5 w-full"
             >
               <div className="flex flex-col gap-2.5">
-                <h1 className="dark:text-sky-400 text-sky-600 text-[0.95rem] md:text-[1rem] font-semibold break-words">
+                <h2 className="dark:text-sky-400 text-sky-600 text-[16px] font-semibold break-words">
                   {skill.name}
-                </h1>
+                </h2>
                 <div className="flex flex-col gap-2">
                   {skill.values.map((value, idx) => (
                     <div key={`${index}-${idx}`} className="w-full">
                       <p
-                        className={`text-[0.85rem] py-1 px-2.5 rounded font-medium truncate ${
+                        className={`text-[14px] py-1 px-2.5 rounded font-medium truncate ${
                           value.proficiency === "Beginner"
                             ? "bg-amber-100 text-amber-900 dark:bg-amber-950/50 dark:text-amber-300 !w-2/5"
                             : value.proficiency === "Intermediate"
@@ -98,44 +100,49 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
-          Internship
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[20px] font-bold tracking-tight break-words">
+          Work Experience
         </h1>
         <div className="grid grid-cols-1 gap-4 my-2 w-full">
-          {INTERNSHIPS.map((intern, index) => (
+          {EXPERIENCES.map((exp: ExperienceItem, index: number) => (
             <div
               key={index}
               className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-6 w-full flex flex-col gap-3 text-left"
             >
               <div className="flex flex-col md:flex-row justify-between items-start w-full gap-1">
                 <div className="flex flex-col text-left">
-                  {intern.role && (
-                    <h1 className="dark:text-slate-100 text-slate-900 text-[1rem] md:text-[1.05rem] font-bold break-words">
-                      {intern.role}
-                    </h1>
+                  {exp.role && (
+                    <h2 className="dark:text-slate-100 text-slate-900 text-[16px] font-bold break-words">
+                      {exp.role}
+                    </h2>
                   )}
-                  {intern.details.title && (
-                    <h1 className="dark:text-sky-400 text-sky-600 text-[0.92rem] md:text-[0.98rem] font-medium break-words">
-                      {intern.details.title}
-                    </h1>
+                  {exp.organization && (
+                    <p className="dark:text-slate-300 text-slate-700 text-[14px] font-medium break-words">
+                      {exp.organization}
+                    </p>
+                  )}
+                  {exp.details.title && (
+                    <h3 className="dark:text-sky-400 text-sky-600 text-[14px] font-medium break-words mt-0.5">
+                      {exp.details.title}
+                    </h3>
                   )}
                 </div>
-                <p className="dark:text-slate-400 text-slate-500 text-[0.82rem] font-normal text-start md:text-end shrink-0">
-                  {intern.start} - {intern.end} ({intern.period}{" "}
-                  {intern.period === 1 ? "month" : "months"})
+                <p className="dark:text-slate-400 text-slate-500 text-[12px] font-normal text-start md:text-end shrink-0">
+                  {exp.start} - {exp.end} ({exp.period}{" "}
+                  {exp.period === 1 ? "month" : "months"})
                 </p>
               </div>
 
               <div className="flex flex-col gap-4 w-full">
                 <div className="flex flex-col gap-1.5 text-left">
-                  <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider">
+                  <p className="dark:text-slate-400 text-slate-500 text-[12px] font-medium uppercase tracking-wider">
                     Key Points
                   </p>
                   <div className="flex flex-col gap-1">
-                    {intern.details.description.map((step, idx) => (
+                    {exp.details.description.map((step: string, idx: number) => (
                       <p
                         key={idx}
-                        className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
+                        className="dark:text-slate-300 text-slate-600 text-[14px] leading-relaxed text-left"
                       >
                         • {step}
                       </p>
@@ -143,16 +150,16 @@ const Main = () => {
                   </div>
                 </div>
 
-                {intern.tools && (
+                {exp.tools && (
                   <div className="flex flex-col text-left pt-1">
-                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
+                    <p className="dark:text-slate-400 text-slate-500 text-[12px] font-medium uppercase tracking-wider mb-2">
                       Tools Used
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {intern.tools.map((tool, idx) => (
+                      {exp.tools.map((tool: string, idx: number) => (
                         <span
                           key={idx}
-                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
+                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[12px]"
                         >
                           {tool}
                         </span>
@@ -167,11 +174,85 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[20px] font-bold tracking-tight break-words">
+          Internship
+        </h1>
+        <div className="grid grid-cols-1 gap-4 my-2 w-full">
+          {INTERNSHIPS.map((intern: ExperienceItem, index: number) => (
+            <div
+              key={index}
+              className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-6 w-full flex flex-col gap-3 text-left"
+            >
+              <div className="flex flex-col md:flex-row justify-between items-start w-full gap-1">
+                <div className="flex flex-col text-left">
+                  {intern.role && (
+                    <h2 className="dark:text-slate-100 text-slate-900 text-[16px] font-bold break-words">
+                      {intern.role}
+                    </h2>
+                  )}
+                  {intern.organization && (
+                    <p className="dark:text-slate-300 text-slate-700 text-[14px] font-medium break-words">
+                      {intern.organization}
+                    </p>
+                  )}
+                  {intern.details.title && (
+                    <h3 className="dark:text-sky-400 text-sky-600 text-[14px] font-medium break-words mt-0.5">
+                      {intern.details.title}
+                    </h3>
+                  )}
+                </div>
+                <p className="dark:text-slate-400 text-slate-500 text-[12px] font-normal text-start md:text-end shrink-0">
+                  {intern.start} - {intern.end} ({intern.period}{" "}
+                  {intern.period === 1 ? "month" : "months"})
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-1.5 text-left">
+                  <p className="dark:text-slate-400 text-slate-500 text-[12px] font-medium uppercase tracking-wider">
+                    Key Points
+                  </p>
+                  <div className="flex flex-col gap-1">
+                    {intern.details.description.map((step: string, idx: number) => (
+                      <p
+                        key={idx}
+                        className="dark:text-slate-300 text-slate-600 text-[14px] leading-relaxed text-left"
+                      >
+                        • {step}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                {intern.tools && (
+                  <div className="flex flex-col text-left pt-1">
+                    <p className="dark:text-slate-400 text-slate-500 text-[12px] font-medium uppercase tracking-wider mb-2">
+                      Tools Used
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {intern.tools.map((tool: string, idx: number) => (
+                        <span
+                          key={idx}
+                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[12px]"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="flex flex-col w-full">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[20px] font-bold tracking-tight break-words">
           Projects
         </h1>
         <div className="flex flex-col gap-4 my-2 w-full">
-          {PROJECTS.map((project, index) => (
+          {PROJECTS.map((project: ProjectItem, index: number) => (
             <div
               key={index}
               className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-6 w-full flex flex-col gap-4 text-left"
@@ -179,12 +260,12 @@ const Main = () => {
               <div className="flex flex-col md:flex-row justify-between items-start w-full gap-1">
                 <div className="flex flex-col text-left">
                   {project.details.title && (
-                    <h1 className="dark:text-sky-400 text-sky-600 text-[1.05rem] font-semibold break-words">
+                    <h2 className="dark:text-sky-400 text-sky-600 text-[16px] font-semibold break-words">
                       {project.details.title}
-                    </h1>
+                    </h2>
                   )}
                 </div>
-                <p className="dark:text-slate-400 text-slate-500 text-[0.82rem] font-normal text-start md:text-end shrink-0">
+                <p className="dark:text-slate-400 text-slate-500 text-[12px] font-normal text-start md:text-end shrink-0">
                   {project.start} - {project.end} ({project.period}{" "}
                   {project.period === 1 ? "month" : "months"})
                 </p>
@@ -192,13 +273,13 @@ const Main = () => {
 
               <div className="flex flex-col gap-3.5 w-full text-left">
                 <div className="flex flex-col text-left gap-1">
-                  <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-0.5">
+                  <p className="dark:text-slate-400 text-slate-500 text-[12px] font-medium uppercase tracking-wider mb-0.5">
                     Key Points
                   </p>
-                  {project.details.description.map((step, idx) => (
+                  {project.details.description.map((step: string, idx: number) => (
                     <p
                       key={idx}
-                      className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
+                      className="dark:text-slate-300 text-slate-600 text-[14px] leading-relaxed text-left"
                     >
                       • {step}
                     </p>
@@ -207,14 +288,14 @@ const Main = () => {
 
                 {project.tools && (
                   <div className="flex flex-col text-left pt-1">
-                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
+                    <p className="dark:text-slate-400 text-slate-500 text-[12px] font-medium uppercase tracking-wider mb-2">
                       Tools Used
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      {project.tools.map((tool, idx) => (
+                      {project.tools.map((tool: string, idx: number) => (
                         <span
                           key={idx}
-                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
+                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[12px]"
                         >
                           {tool}
                         </span>
@@ -229,79 +310,10 @@ const Main = () => {
                       <Link
                         href={project.link}
                         target="_blank"
-                        className="font-medium py-1.5 px-4 rounded text-[0.82rem] bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
+                        className="font-medium py-1.5 px-4 rounded text-[12px] bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
                       >
                         Live Demo
                       </Link>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
-          Position of Responsibilities
-        </h1>
-        <div className="grid grid-cols-1 gap-4 my-2 w-full">
-          {PORS.map((por, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-6 w-full flex flex-col gap-3 text-left"
-            >
-              <div className="flex flex-col md:flex-row justify-between items-start w-full gap-1">
-                <div className="flex flex-col text-left">
-                  {por.role && (
-                    <h1 className="dark:text-slate-100 text-slate-900 text-[1rem] md:text-[1.05rem] font-bold break-words">
-                      {por.role}
-                    </h1>
-                  )}
-                  {por.details.title && (
-                    <h1 className="dark:text-sky-400 text-sky-600 text-[0.92rem] md:text-[0.98rem] font-medium break-words">
-                      {por.details.title}
-                    </h1>
-                  )}
-                </div>
-                <p className="dark:text-slate-400 text-slate-500 text-[0.82rem] font-normal text-start md:text-end shrink-0">
-                  {por.start} - {por.end} ({por.period}{" "}
-                  {por.period === 1 ? "month" : "months"})
-                </p>
-              </div>
-
-              <div className="flex flex-col gap-4 w-full">
-                <div className="flex flex-col gap-1.5 text-left">
-                  <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider">
-                    Key Points
-                  </p>
-                  <div className="flex flex-col gap-1">
-                    {por.details.description.map((step, idx) => (
-                      <p
-                        key={idx}
-                        className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
-                      >
-                        • {step}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-
-                {por.tools && (
-                  <div className="flex flex-col text-left pt-1">
-                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
-                      Tools Used
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {por.tools.map((tool, idx) => (
-                        <span
-                          key={idx}
-                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
-                        >
-                          {tool}
-                        </span>
-                      ))}
                     </div>
                   </div>
                 )}
