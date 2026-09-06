@@ -23,7 +23,7 @@ export default function RootLayout({
           fetchPriority="high"
         />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

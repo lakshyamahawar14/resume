@@ -32,14 +32,9 @@ export interface EducationItem {
   score: string;
 }
 
-export interface SkillValue {
-  name: string;
-  proficiency: "Beginner" | "Intermediate" | "Advanced";
-}
-
 export interface SkillGroup {
   name: string;
-  values: SkillValue[];
+  values: string[];
 }
 
 export interface SocialLinkItem {
@@ -101,52 +96,58 @@ export const EDUCATION: EducationItem[] = [
 
 export const SKILLS: SkillGroup[] = [
   {
-    name: "Computer Languages",
+    name: "Languages",
     values: [
-      { name: "C++", proficiency: "Advanced" },
-      { name: "Python", proficiency: "Intermediate" },
-      { name: "Java", proficiency: "Beginner" },
-      { name: "JavaScript", proficiency: "Intermediate" },
-      { name: "TypeScript", proficiency: "Intermediate" },
-      { name: "ABAP", proficiency: "Intermediate" },
-      { name: "SQL", proficiency: "Intermediate" },
+      "C++",
+      "JavaScript",
+      "TypeScript",
+      "Python",
+      "ABAP",
+      "SQL",
+      "HTML5",
+      "CSS3",
     ],
   },
   {
-    name: "Software Packages",
+    name: "Frameworks & Libraries",
     values: [
-      { name: "Git", proficiency: "Intermediate" },
-      { name: "GitHub", proficiency: "Intermediate" },
-      { name: "VS Code", proficiency: "Advanced" },
-      { name: "Docker", proficiency: "Beginner" },
-      { name: "MATLAB", proficiency: "Beginner" },
-      { name: "LTspice", proficiency: "Beginner" },
+      "Next.js",
+      "React",
+      "Node.js",
+      "Express.js",
+      "RESTful APIs",
+      "OData",
+      "Recoil",
+      "Redux",
+      "Fiori UI",
     ],
   },
   {
-    name: "Additional Courses",
+    name: "Cloud, DevOps & Databases",
     values: [
-      {
-        name: "Fundamentals of Object-Oriented Programming",
-        proficiency: "Advanced",
-      },
-      { name: "Data Structures", proficiency: "Advanced" },
-      {
-        name: "Data Mining for Business Intelligence",
-        proficiency: "Intermediate",
-      },
-      {
-        name: "Machine Learning in Semiconductor Industry",
-        proficiency: "Intermediate",
-      },
-      { name: "Probability and Statistics", proficiency: "Advanced" },
+      "PostgreSQL",
+      "Supabase",
+      "HANA DB",
+      "AWS EC2",
+      "Render",
+      "Vercel",
+      "Firebase",
+      "Docker",
+      "Git",
+      "GitHub Actions",
+      "Azure DevOps (ADO)",
     ],
   },
   {
-    name: "Languages Known",
+    name: "Emerging Tech & Enterprise (SAP)",
     values: [
-      { name: "Hindi", proficiency: "Advanced" },
-      { name: "English", proficiency: "Advanced" },
+      "Generative AI",
+      "Large Language Models (LLMs)",
+      "Prompt Engineering",
+      "SAP BTP",
+      "CAP",
+      "CDS Views",
+      "S/4HANA RISE",
     ],
   },
 ];

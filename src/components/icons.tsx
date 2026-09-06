@@ -1,54 +1,64 @@
-import type { SVGProps } from "react";
-
-export const GithubIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    fill="none"
-    {...props}
-  >
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-    <path d="M9 18c-4.51 2-5-2-7-2" />
+export const GithubIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className}>
+    <path
+      fillRule="evenodd"
+      clipRule="evenodd"
+      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+    />
   </svg>
 );
 
-export const LinkedinIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    fill="none"
-    {...props}
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-    <rect width="4" height="12" x="2" y="9" />
-    <circle cx="4" cy="4" r="2" />
+export const LinkedinIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className}>
+    <rect width="24" height="24" rx="4" fill="#0A66C2" />
+    <path
+      d="M7.09 5.5a1.59 1.59 0 11-3.18 0 1.59 1.59 0 013.18 0zM3.91 8.5h3.18V19H3.91V8.5zm5.18 0h3.05v1.43h.04c.42-.8 1.46-1.64 3.01-1.64 3.22 0 3.81 2.12 3.81 4.88V19h-3.18v-5.14c0-1.23-.02-2.8-1.71-2.8-1.71 0-1.97 1.33-1.97 2.71V19H9.09V8.5z"
+      fill="#FFFFFF"
+    />
   </svg>
 );
 
-export const InstagramIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg
-    viewBox="0 0 24 24"
-    width="24"
-    height="24"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    fill="none"
-    {...props}
-  >
-    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+export const InstagramIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className}>
+    <defs>
+      <linearGradient id="ig-grad" x1="2" y1="22" x2="22" y2="2" gradientUnits="userSpaceOnUse">
+        <stop stopColor="#FED576" />
+        <stop offset="0.26" stopColor="#F47133" />
+        <stop offset="0.61" stopColor="#BC3081" />
+        <stop offset="1" stopColor="#4C63D2" />
+      </linearGradient>
+    </defs>
+    <rect width="20" height="20" x="2" y="2" rx="5" fill="url(#ig-grad)" />
+    <path
+      d="M12 7.03a4.97 4.97 0 100 9.94 4.97 4.97 0 000-9.94zm0 8.16a3.19 3.19 0 110-6.38 3.19 3.19 0 010 6.38zm5.28-8.47a1.16 1.16 0 11-2.32 0 1.16 1.16 0 012.32 0z"
+      fill="#FFFFFF"
+    />
+  </svg>
+);
+
+export const LeetcodeIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className}>
+    <path
+      d="M16.102 17.93l-2.697 2.607c-.466.467-1.111.728-1.771.728s-1.305-.261-1.771-.728L4.22 15.023a4.347 4.347 0 010-6.146l5.643-5.514c.466-.467 1.111-.728 1.771-.728s1.305.261 1.771.728l2.697 2.607a1.25 1.25 0 01-1.748 1.79l-2.697-2.607a.998.998 0 00-.723-.3c-.267 0-.521.108-.723.3L4.968 10.647a2.847 2.847 0 000 4.022l5.643 5.514c.202.192.456.3.723.3.267 0 .521-.108.723-.3l2.697-2.607a1.25 1.25 0 111.348.354z"
+      fill="#FFA116"
+    />
+    <path
+      d="M9.824 13.916a1.25 1.25 0 010-1.768l4.475-4.475a1.25 1.25 0 111.768 1.768l-4.475 4.475a1.25 1.25 0 01-1.768 0z"
+      fill="#B3B1B0"
+    />
+    <path
+      d="M12.25 16.75h7.5a1.25 1.25 0 010 2.5h-7.5a1.25 1.25 0 010-2.5z"
+      fill="#FFA116"
+    />
+  </svg>
+);
+
+export const TypingIcon = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" fill="none" className={className}>
+    <rect width="24" height="24" rx="5" fill="#2E7D32" />
+    <path
+      d="M4 7a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V7zm3 1a1 1 0 00-1 1v1a1 1 0 001 1h1a1 1 0 001-1V9a1 1 0 00-1-1H7zm4 0a1 1 0 00-1 1v1a1 1 0 001 1h1a1 1 0 001-1V9a1 1 0 00-1-1h-1zm4 0a1 1 0 00-1 1v1a1 1 0 001 1h1a1 1 0 001-1V9a1 1 0 00-1-1h-1zM7 12a1 1 0 00-1 1v1a1 1 0 001 1h1a1 1 0 001-1v-1a1 1 0 00-1-1H7zm4 0a1 1 0 00-1 1v1a1 1 0 001 1h1a1 1 0 001-1v-1a1 1 0 00-1-1h-1zm4 0a1 1 0 00-1 1v1a1 1 0 001 1h1a1 1 0 001-1v-1a1 1 0 00-1-1h-1zM8 16a1 1 0 000 2h8a1 1 0 100-2H8z"
+      fill="#FFFFFF"
+    />
   </svg>
 );

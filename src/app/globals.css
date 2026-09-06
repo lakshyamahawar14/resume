@@ -5,23 +5,20 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --breakpoint-sm: 450px;
-  --breakpoint-md: 512px;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", system-ui, sans-serif;
   --breakpoint-lg: 1024px;
 }
 
 @layer base {
   * {
     box-sizing: border-box;
-    user-select: none;
     font-family: var(--font-sans);
   }
 
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
+    text-rendering: optimizeSpeed;
   }
 
   html,
@@ -37,11 +34,12 @@
   }
 
   :is(.dark body) {
-    background-color: #0d1117;
-    color: #f1f5f9;
+    background-color: #0b0f17;
+    color: #f8fafc;
   }
+}
 
-  h1 {
-    margin-bottom: 0.5rem;
-  }
+.content-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 150px;
 }

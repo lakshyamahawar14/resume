@@ -1,13 +1,13 @@
-import Main from "@/components/main";
 import SideBar from "@/components/sidebar";
+import Main from "@/components/main";
 
 export default function Home() {
   return (
-    <main>
-      <div className="min-h-screen h-full flex flex-col lg:flex-row gap-0 justify-start items-start">
-        <SideBar />
+    <div className="flex flex-col lg:flex-row min-h-screen w-full">
+      <SideBar />
+      <div className="flex-1 flex justify-center w-full min-w-0">
         <Main />
       </div>
-    </main>
+    </div>
   );
 }
