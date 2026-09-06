@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import {
   INTERESTS,
@@ -191,69 +190,49 @@ const Main = () => {
                 </p>
               </div>
 
-              <div className="flex flex-col lg:flex-row justify-between items-start gap-6 w-full">
-                <div className="flex flex-col gap-3.5 flex-1 text-left">
-                  <div className="flex flex-col text-left gap-1">
-                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-0.5">
-                      Key Points
+              <div className="flex flex-col gap-3.5 w-full text-left">
+                <div className="flex flex-col text-left gap-1">
+                  <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-0.5">
+                    Key Points
+                  </p>
+                  {project.details.description.map((step, idx) => (
+                    <p
+                      key={idx}
+                      className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
+                    >
+                      • {step}
                     </p>
-                    {project.details.description.map((step, idx) => (
-                      <p
-                        key={idx}
-                        className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
-                      >
-                        • {step}
-                      </p>
-                    ))}
-                  </div>
-
-                  {project.tools && (
-                    <div className="flex flex-col text-left pt-1">
-                      <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
-                        Tools Used
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tools.map((tool, idx) => (
-                          <span
-                            key={idx}
-                            className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {project.link && (
-                    <div className="flex flex-col text-left pt-1">
-                      <div className="flex flex-wrap gap-2">
-                        <Link
-                          href={project.link}
-                          target="_blank"
-                          className="font-medium py-1.5 px-4 rounded text-[0.82rem] bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
-                        >
-                          Live Demo
-                        </Link>
-                      </div>
-                    </div>
-                  )}
+                  ))}
                 </div>
 
-                {project.imageSrc && (
-                  <div className="flex justify-start lg:justify-end items-start w-full lg:w-auto shrink-0 self-start">
-                    <div className="w-full max-w-[340px] md:w-[340px] aspect-[16/10] rounded-md overflow-hidden shrink-0 shadow-sm bg-slate-100 dark:bg-[#0d1117] flex items-center justify-center p-1">
-                      <Image
-                        src={project.imageSrc}
-                        width={680}
-                        height={425}
-                        priority={true}
-                        loading="eager"
-                        decoding="sync"
-                        unoptimized={true}
-                        alt={`${project.details.title} image`}
-                        className="w-full h-full object-contain rounded"
-                      />
+                {project.tools && (
+                  <div className="flex flex-col text-left pt-1">
+                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
+                      Tools Used
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tools.map((tool, idx) => (
+                        <span
+                          key={idx}
+                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {project.link && (
+                  <div className="flex flex-col text-left pt-1">
+                    <div className="flex flex-wrap gap-2">
+                      <Link
+                        href={project.link}
+                        target="_blank"
+                        className="font-medium py-1.5 px-4 rounded text-[0.82rem] bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
+                      >
+                        Live Demo
+                      </Link>
                     </div>
                   </div>
                 )}
