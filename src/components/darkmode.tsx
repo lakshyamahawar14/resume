@@ -1,39 +1,25 @@
 "use client";
 
-import Heading from "./heading";
-import { useDarkModeStore } from "@/providers/dark-mode-store-provider";
-import { faBars, faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { Moon, Sun } from "lucide-react";
 
 const DarkMode = () => {
-  const { isDarkMode, toggleDarkMode } = useDarkModeStore((state) => state);
-  const [darkMode, setDarkMode] = useState(isDarkMode);
+  const { resolvedTheme, setTheme } = useTheme();
 
-  useEffect(() => {
-    const element = document.getElementsByTagName("html")[0];
-    if (!isDarkMode) {
-      element.classList.remove("dark");
-    } else {
-      element.classList.add("dark");
-    }
-    setDarkMode(isDarkMode);
-  }, [isDarkMode]);
-
-  const changeTheme = () => {
-    toggleDarkMode();
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
   return (
-    <div className="flex justify-center items-center cursor-pointer mt-4">
+    <div className="w-full flex justify-center items-center mt-4">
       <button
-        onClick={changeTheme}
-        className="border h-8 w-16 shrink-0 grid justify-center items-center rounded-full dark:text-slate-400 text-slate-600 dark:hover:text-slate-200 hover:text-slate-800 bg-white dark:bg-[#161B22] hover:bg-slate-200 dark:hover:bg-[#0D1117]"
+        type="button"
+        onClick={toggleTheme}
+        aria-label="Toggle dark mode"
+        className="border h-8 w-16 shrink-0 flex justify-center items-center rounded-full dark:text-slate-400 text-slate-600 dark:hover:text-slate-200 hover:text-slate-800 bg-white dark:bg-[#161B22] hover:bg-slate-200 dark:hover:bg-[#0D1117] cursor-pointer"
       >
-        <FontAwesomeIcon
-          icon={isDarkMode ? faSun : faMoon}
-          className="w-auto h-[1rem]"
-        />
+        <Sun className="w-4 h-4 shrink-0 hidden dark:block" />
+        <Moon className="w-4 h-4 shrink-0 block dark:hidden" />
       </button>
     </div>
   );

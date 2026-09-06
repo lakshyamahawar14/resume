@@ -1,6 +1,15 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+@source "./**/*.{ts,tsx}";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-hubotSans: "Hubot Sans", sans-serif;
+  --breakpoint-sm: 450px;
+  --breakpoint-md: 512px;
+  --breakpoint-lg: 1024px;
+}
 
 @font-face {
   font-family: "Hubot Sans";
@@ -8,59 +17,30 @@
   src: url("/fonts/Hubot-Sans.woff2");
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  user-select: none;
-  width: 100%;
-  position: relative;
-  background: transparent;
+@layer base {
+  * {
+    box-sizing: border-box;
+    user-select: none;
+    font-family: var(--font-hubotSans);
+  }
 
-  @apply font-hubotSans;
-}
+  html,
+  :root,
+  body {
+    height: 100%;
+  }
 
-html,
-:root,
-body {
-  height: 100%;
-}
+  body {
+    background-color: #ffffff;
+  }
 
-body {
-  @apply bg-white dark:bg-[#010409];
-}
+  :is(.dark body) {
+    background-color: #010409;
+  }
 
-.loadable::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-  pointer-events: none;
-  transition: background-color 1s ease-out, opacity 1s ease-out;
-  z-index: 50;
-  @apply dark:bg-[#161B22];
-}
-
-.loadable.fade-in::before {
-  background-color: rgba(255, 0, 0, 0);
-  opacity: 0;
-}
-
-p,
-span,
-h1,
-h2,
-h3,
-h4,
-img {
-  opacity: 0;
-}
-
-h1 {
-  @apply mb-2;
+  h1 {
+    margin-bottom: 0.5rem;
+  }
 }
 
 .dark::-webkit-scrollbar {
@@ -82,21 +62,46 @@ h1 {
 }
 
 .border {
-  @apply border-slate-300 dark:border-[#30363D] border-[1px];
+  border-width: 1px;
+  border-color: rgb(203 213 225);
+}
+
+:is(.dark .border) {
+  border-color: #30363D;
 }
 
 .border-l {
-  @apply border-slate-300 dark:border-[#30363D] border-l-[1px];
+  border-left-width: 1px;
+  border-color: rgb(203 213 225);
+}
+
+:is(.dark .border-l) {
+  border-color: #30363D;
 }
 
 .border-r {
-  @apply border-slate-300 dark:border-[#30363D] border-r-[1px];
+  border-right-width: 1px;
+  border-color: rgb(203 213 225);
+}
+
+:is(.dark .border-r) {
+  border-color: #30363D;
 }
 
 .border-t {
-  @apply border-slate-300 dark:border-[#30363D] border-t-[1px];
+  border-top-width: 1px;
+  border-color: rgb(203 213 225);
+}
+
+:is(.dark .border-t) {
+  border-color: #30363D;
 }
 
 .border-b {
-  @apply border-slate-300 dark:border-[#30363D] border-b-[1px];
+  border-bottom-width: 1px;
+  border-color: rgb(203 213 225);
+}
+
+:is(.dark .border-b) {
+  border-color: #30363D;
 }

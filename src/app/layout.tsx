@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { DarkModeStoreProvider } from "@/providers/dark-mode-store-provider";
+import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
-  description: "Portfolio Made Using NextJS",
+  title: "Lakshya Mahawar's Portfolio",
+  description:
+    "A portfolio website showcasing the skills, projects, and experiences of Lakshya Mahawar.",
 };
 
 export default function RootLayout({
@@ -13,9 +14,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <DarkModeStoreProvider>{children}</DarkModeStoreProvider>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
