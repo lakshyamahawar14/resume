@@ -11,15 +11,15 @@ import {
 
 const Main = () => {
   return (
-    <section className="p-6 flex flex-col gap-4">
-      <section className="flex flex-col overflow-x-hidden">
-        <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
+    <section className="p-6 md:p-8 flex flex-col gap-6 w-full max-w-5xl">
+      <section className="flex flex-col w-full">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
           Area of Interest
         </h1>
-        <div className="flex flex-wrap gap-2 my-2">
+        <div className="flex flex-wrap gap-2.5 my-2">
           {INTERESTS.map((interest, index) => (
             <div key={index} className="w-auto flex">
-              <span className="font-semibold w-auto px-4 py-2 dark:bg-[#161B22] border bg-white dark:text-slate-200 text-slate-700 text-[1rem] rounded-md">
+              <span className="font-medium w-auto px-3.5 py-1.5 dark:bg-[#161b22] bg-white shadow-sm dark:text-slate-200 text-slate-700 text-[0.88rem] rounded-md">
                 {interest}
               </span>
             </div>
@@ -28,68 +28,70 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
           Education
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fill,minmax(275px,1fr))] gap-4 my-2">
           {EDUCATION.map((edu, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-[#161B22] border rounded-md p-4 w-full"
+              className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-5 w-full flex flex-col justify-between"
             >
-              <div className="flex flex-col gap-2">
-                <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words !text-sky-400">
+              <div className="flex flex-col gap-1.5">
+                <h1 className="dark:text-sky-400 text-sky-600 text-[0.95rem] md:text-[1rem] font-semibold break-words">
                   {edu.examination}
                 </h1>
-                <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words !p-0 leading-6">
-                  🏫 {edu.institution}
-                </h1>
-                <p className="dark:text-slate-400 text-slate-700 py-1 leading-7 text-[0.9rem] md:text-[0.95rem] lg:text-[1rem] font-normal break-words !p-0">
-                  📅 {edu.year}
+                <p className="dark:text-slate-200 text-slate-800 text-[0.9rem] font-medium leading-snug break-words">
+                  {edu.institution}
                 </p>
-                <p className="dark:text-slate-400 text-slate-700 py-1 leading-7 text-[0.9rem] md:text-[0.95rem] lg:text-[1rem] font-normal break-words">
-                  <span>
-                    {edu.score[edu.score.length - 1] === "%"
-                      ? "Percentage: "
-                      : "CGPA: "}
-                    <span className="font-bold">{edu.score}</span>
-                  </span>
+                <p className="dark:text-slate-400 text-slate-500 text-[0.85rem] font-normal break-words">
+                  {edu.year}
                 </p>
               </div>
+              <p className="dark:text-slate-400 text-slate-600 text-[0.85rem] font-normal break-words mt-3 pt-2 border-t border-slate-100 dark:border-[#21262d]">
+                <span>
+                  {edu.score[edu.score.length - 1] === "%"
+                    ? "Percentage: "
+                    : "CGPA: "}
+                  <span className="font-semibold text-slate-800 dark:text-slate-200">{edu.score}</span>
+                </span>
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
           Skills
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4 my-2">
           {SKILLS.map((skill, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-[#161B22] border rounded-md p-4 w-full"
+              className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-5 w-full"
             >
-              <div className="flex flex-col gap-2">
-                <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words !text-sky-400">
+              <div className="flex flex-col gap-2.5">
+                <h1 className="dark:text-sky-400 text-sky-600 text-[0.95rem] md:text-[1rem] font-semibold break-words">
                   {skill.name}
                 </h1>
-                {skill.values.map((value, idx) => (
-                  <div key={`${index}-${idx}`}>
-                    <p
-                      className={`dark:text-slate-400 text-slate-700 py-1 text-[0.9rem] md:text-[0.95rem] lg:text-[1rem] font-normal break-words !rounded !px-2 !text-[0.9rem] !text-black !leading-6 !font-bold ${
-                        value.proficiency === "Beginner"
-                          ? "bg-orange-500 !w-1/3"
-                          : value.proficiency === "Intermediate"
-                          ? "bg-yellow-300 !w-2/3"
-                          : "bg-green-400"
-                      } truncate`}
-                    >
-                      {value.name}
-                    </p>
-                  </div>
-                ))}
+                <div className="flex flex-col gap-2">
+                  {skill.values.map((value, idx) => (
+                    <div key={`${index}-${idx}`} className="w-full">
+                      <p
+                        className={`text-[0.85rem] py-1 px-2.5 rounded font-medium truncate ${
+                          value.proficiency === "Beginner"
+                            ? "bg-amber-100 text-amber-900 dark:bg-amber-950/50 dark:text-amber-300 !w-2/5"
+                            : value.proficiency === "Intermediate"
+                            ? "bg-yellow-100 text-yellow-900 dark:bg-yellow-950/50 dark:text-yellow-300 !w-3/4"
+                            : "bg-emerald-100 text-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-300 w-full"
+                        }`}
+                      >
+                        {value.name}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
@@ -97,68 +99,68 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
           Internship
         </h1>
-        <div className="grid grid-cols-1 gap-4 my-2">
+        <div className="grid grid-cols-1 gap-4 my-2 w-full">
           {INTERNSHIPS.map((intern, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-[#161B22] border rounded-lg p-4 w-full my-2 flex flex-col gap-2"
+              className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-6 w-full flex flex-col gap-3 text-left"
             >
-              <div className="flex flex-col md:flex-row justify-between items-start">
-                <div className="flex flex-col">
+              <div className="flex flex-col md:flex-row justify-between items-start w-full gap-1">
+                <div className="flex flex-col text-left">
                   {intern.role && (
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words">
+                    <h1 className="dark:text-slate-100 text-slate-900 text-[1rem] md:text-[1.05rem] font-bold break-words">
                       {intern.role}
                     </h1>
                   )}
                   {intern.details.title && (
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words !text-sky-400">
+                    <h1 className="dark:text-sky-400 text-sky-600 text-[0.92rem] md:text-[0.98rem] font-medium break-words">
                       {intern.details.title}
                     </h1>
                   )}
                 </div>
-                <p className="dark:text-slate-400 text-slate-700 py-1 leading-7 font-normal break-words italic !text-[0.8rem] text-start md:text-end">
-                  📅 {intern.start} - {intern.end} ({intern.period}{" "}
+                <p className="dark:text-slate-400 text-slate-500 text-[0.82rem] font-normal text-start md:text-end shrink-0">
+                  {intern.start} - {intern.end} ({intern.period}{" "}
                   {intern.period === 1 ? "month" : "months"})
                 </p>
               </div>
 
-              <div className="flex flex-col lg:flex-row justify-center items-start gap-4">
-                <div className="text-slate-500 dark:text-slate-400 flex flex-col gap-2">
-                  <div className="flex flex-col">
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words">
-                      🔑 Key Points
-                    </h1>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-1.5 text-left">
+                  <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider">
+                    Key Points
+                  </p>
+                  <div className="flex flex-col gap-1">
                     {intern.details.description.map((step, idx) => (
                       <p
                         key={idx}
-                        className="dark:text-slate-400 text-slate-700 py-1 text-[0.9rem] md:text-[0.95rem] lg:text-[1rem] font-normal break-words !leading-6 lg:text-justify"
+                        className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
                       >
-                        👉 {step}
+                        • {step}
                       </p>
                     ))}
                   </div>
-
-                  {intern.tools && (
-                    <div className="flex flex-col">
-                      <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
-                        🔨 Tools Used
-                      </h1>
-                      <div className="flex flex-wrap gap-2 my-2">
-                        {intern.tools.map((tool, idx) => (
-                          <span
-                            key={idx}
-                            className="font-semibold w-auto px-4 py-2 dark:bg-[#161B22] border bg-white dark:text-slate-200 text-slate-700 rounded-md !text-[0.8rem]"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
+
+                {intern.tools && (
+                  <div className="flex flex-col text-left pt-1">
+                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
+                      Tools Used
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {intern.tools.map((tool, idx) => (
+                        <span
+                          key={idx}
+                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
@@ -166,55 +168,55 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
           Projects
         </h1>
-        <div className="flex flex-wrap gap-2 my-2">
+        <div className="flex flex-col gap-4 my-2 w-full">
           {PROJECTS.map((project, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-[#161B22] border rounded-lg p-4 w-full my-2 flex flex-col gap-2"
+              className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-6 w-full flex flex-col gap-4 text-left"
             >
-              <div className="flex flex-col md:flex-row justify-between items-start">
-                <div className="flex flex-col">
+              <div className="flex flex-col md:flex-row justify-between items-start w-full gap-1">
+                <div className="flex flex-col text-left">
                   {project.details.title && (
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words !text-sky-400">
+                    <h1 className="dark:text-sky-400 text-sky-600 text-[1.05rem] font-semibold break-words">
                       {project.details.title}
                     </h1>
                   )}
                 </div>
-                <p className="dark:text-slate-400 text-slate-700 py-1 leading-7 font-normal break-words italic !text-[0.8rem] text-start md:text-end">
-                  📅 {project.start} - {project.end} ({project.period}{" "}
+                <p className="dark:text-slate-400 text-slate-500 text-[0.82rem] font-normal text-start md:text-end shrink-0">
+                  {project.start} - {project.end} ({project.period}{" "}
                   {project.period === 1 ? "month" : "months"})
                 </p>
               </div>
 
-              <div className="flex flex-col lg:flex-row justify-center items-start gap-4">
-                <div className="text-slate-500 dark:text-slate-400 flex flex-col gap-2">
-                  <div className="flex flex-col">
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words">
-                      🔑 Key Points
-                    </h1>
+              <div className="flex flex-col lg:flex-row justify-between items-start gap-6 w-full">
+                <div className="flex flex-col gap-3.5 flex-1 text-left">
+                  <div className="flex flex-col text-left gap-1">
+                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-0.5">
+                      Key Points
+                    </p>
                     {project.details.description.map((step, idx) => (
                       <p
                         key={idx}
-                        className="dark:text-slate-400 text-slate-700 py-1 text-[0.9rem] md:text-[0.95rem] lg:text-[1rem] font-normal break-words !leading-6 lg:text-justify"
+                        className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
                       >
-                        👉 {step}
+                        • {step}
                       </p>
                     ))}
                   </div>
 
                   {project.tools && (
-                    <div className="flex flex-col">
-                      <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
-                        🔨 Tools Used
-                      </h1>
-                      <div className="flex flex-wrap gap-2 my-2">
+                    <div className="flex flex-col text-left pt-1">
+                      <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
+                        Tools Used
+                      </p>
+                      <div className="flex flex-wrap gap-2">
                         {project.tools.map((tool, idx) => (
                           <span
                             key={idx}
-                            className="font-semibold w-auto px-4 py-2 dark:bg-[#161B22] border bg-white dark:text-slate-200 text-slate-700 rounded-md !text-[0.8rem]"
+                            className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
                           >
                             {tool}
                           </span>
@@ -224,17 +226,14 @@ const Main = () => {
                   )}
 
                   {project.link && (
-                    <div className="flex flex-col">
-                      <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words">
-                        Live Demo
-                      </h1>
-                      <div className="flex flex-wrap gap-2 my-2">
+                    <div className="flex flex-col text-left pt-1">
+                      <div className="flex flex-wrap gap-2">
                         <Link
                           href={project.link}
                           target="_blank"
-                          className="font-semibold py-2 px-4 rounded text-[0.8rem] bg-[#29903B] hover:bg-green-600 text-white !w-auto"
+                          className="font-medium py-1.5 px-4 rounded text-[0.82rem] bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm"
                         >
-                          {project.details.title}
+                          Live Demo
                         </Link>
                       </div>
                     </div>
@@ -242,15 +241,18 @@ const Main = () => {
                 </div>
 
                 {project.imageSrc && (
-                  <div className="flex justify-center items-center w-full lg:w-auto">
-                    <div className="flex justify-center items-center w-[200px] sm:w-[250px] md:w-[300px] lg:w-[400px] h-full rounded-md">
+                  <div className="flex justify-start lg:justify-end items-start w-full lg:w-auto shrink-0 self-start">
+                    <div className="w-full max-w-[340px] md:w-[340px] aspect-[16/10] rounded-md overflow-hidden shrink-0 shadow-sm bg-slate-100 dark:bg-[#0d1117] flex items-center justify-center p-1">
                       <Image
                         src={project.imageSrc}
-                        width={600}
-                        height={600}
-                        priority={false}
+                        width={680}
+                        height={425}
+                        priority={true}
+                        loading="eager"
+                        decoding="sync"
+                        unoptimized={true}
                         alt={`${project.details.title} image`}
-                        className="w-full h-full object-fit rounded-md"
+                        className="w-full h-full object-contain rounded"
                       />
                     </div>
                   </div>
@@ -262,68 +264,68 @@ const Main = () => {
       </section>
 
       <section className="flex flex-col w-full">
-        <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
+        <h1 className="dark:text-slate-100 text-slate-900 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.25rem] font-bold tracking-tight break-words">
           Position of Responsibilities
         </h1>
-        <div className="grid grid-cols-1 gap-4 my-2">
+        <div className="grid grid-cols-1 gap-4 my-2 w-full">
           {PORS.map((por, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-[#161B22] border rounded-lg p-4 w-full my-2 flex flex-col gap-2"
+              className="bg-white dark:bg-[#161b22] shadow-sm rounded-lg p-6 w-full flex flex-col gap-3 text-left"
             >
-              <div className="flex flex-col md:flex-row justify-between items-start">
-                <div className="flex flex-col">
+              <div className="flex flex-col md:flex-row justify-between items-start w-full gap-1">
+                <div className="flex flex-col text-left">
                   {por.role && (
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words">
+                    <h1 className="dark:text-slate-100 text-slate-900 text-[1rem] md:text-[1.05rem] font-bold break-words">
                       {por.role}
                     </h1>
                   )}
                   {por.details.title && (
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words !text-sky-400">
+                    <h1 className="dark:text-sky-400 text-sky-600 text-[0.92rem] md:text-[0.98rem] font-medium break-words">
                       {por.details.title}
                     </h1>
                   )}
                 </div>
-                <p className="dark:text-slate-400 text-slate-700 py-1 leading-7 font-normal break-words italic !text-[0.8rem] text-start md:text-end">
-                  📅 {por.start} - {por.end} ({por.period}{" "}
+                <p className="dark:text-slate-400 text-slate-500 text-[0.82rem] font-normal text-start md:text-end shrink-0">
+                  {por.start} - {por.end} ({por.period}{" "}
                   {por.period === 1 ? "month" : "months"})
                 </p>
               </div>
 
-              <div className="flex flex-col lg:flex-row justify-center items-start gap-4">
-                <div className="text-slate-500 dark:text-slate-400 flex flex-col gap-2">
-                  <div className="flex flex-col">
-                    <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[0.9rem] md:text-[1rem] lg:text-[1.2rem] font-bold break-words">
-                      🔑 Key Points
-                    </h1>
+              <div className="flex flex-col gap-4 w-full">
+                <div className="flex flex-col gap-1.5 text-left">
+                  <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider">
+                    Key Points
+                  </p>
+                  <div className="flex flex-col gap-1">
                     {por.details.description.map((step, idx) => (
                       <p
                         key={idx}
-                        className="dark:text-slate-400 text-slate-700 py-1 text-[0.9rem] md:text-[0.95rem] lg:text-[1rem] font-normal break-words !leading-6 lg:text-justify"
+                        className="dark:text-slate-300 text-slate-600 text-[0.88rem] leading-relaxed text-left"
                       >
-                        👉 {step}
+                        • {step}
                       </p>
                     ))}
                   </div>
-
-                  {por.tools && (
-                    <div className="flex flex-col">
-                      <h1 className="dark:text-slate-200 text-slate-800 py-1 text-[1.1rem] md:text-[1.2rem] lg:text-[1.3rem] font-bold break-words">
-                        🔨 Tools Used
-                      </h1>
-                      <div className="flex flex-wrap gap-2 my-2">
-                        {por.tools.map((tool, idx) => (
-                          <span
-                            key={idx}
-                            className="font-semibold w-auto px-4 py-2 dark:bg-[#161B22] border bg-white dark:text-slate-200 text-slate-700 rounded-md !text-[0.8rem]"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
+
+                {por.tools && (
+                  <div className="flex flex-col text-left pt-1">
+                    <p className="dark:text-slate-400 text-slate-500 text-[0.8rem] font-medium uppercase tracking-wider mb-2">
+                      Tools Used
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {por.tools.map((tool, idx) => (
+                        <span
+                          key={idx}
+                          className="font-medium px-2.5 py-1 bg-slate-100 dark:bg-[#21262d] dark:text-slate-300 text-slate-700 rounded text-[0.8rem]"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}

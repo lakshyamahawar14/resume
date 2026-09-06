@@ -157,7 +157,7 @@ export const PROJECTS = [
       "Backtracking",
     ],
     link: "https://maze-ai.netlify.app/",
-    imageSrc: "/images/maze_ai.png",
+    imageSrc: "/images/mazeai.webp",
   },
   {
     start: "July 2022",
@@ -173,7 +173,7 @@ export const PROJECTS = [
     },
     tools: ["SvelteKit", "NodeJS", "GPT-3.5", "ChatGPT"],
     link: "https://visual-react.vercel.app/",
-    imageSrc: "/images/visual_react.png",
+    imageSrc: "/images/visualreact.webp",
   },
   {
     start: "Dec 2021",
@@ -189,7 +189,7 @@ export const PROJECTS = [
     },
     tools: ["NextJS", "HTML2PDF"],
     link: "https://questaweb.vercel.app/",
-    imageSrc: "/images/questa_web.png",
+    imageSrc: "/images/questaweb.webp",
   },
   {
     start: "October 2022",

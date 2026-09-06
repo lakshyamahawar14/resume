@@ -5,103 +5,44 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-hubotSans: "Hubot Sans", sans-serif;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --breakpoint-sm: 450px;
   --breakpoint-md: 512px;
   --breakpoint-lg: 1024px;
-}
-
-@font-face {
-  font-family: "Hubot Sans";
-  font-display: block;
-  src: url("/fonts/Hubot-Sans.woff2");
 }
 
 @layer base {
   * {
     box-sizing: border-box;
     user-select: none;
-    font-family: var(--font-hubotSans);
+    font-family: var(--font-sans);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   html,
   :root,
   body {
-    height: 100%;
+    min-height: 100%;
   }
 
   body {
-    background-color: #ffffff;
+    background-color: #f8fafc;
+    color: #0f172a;
+    overflow-x: hidden;
   }
 
   :is(.dark body) {
-    background-color: #010409;
+    background-color: #0d1117;
+    color: #f1f5f9;
   }
 
   h1 {
     margin-bottom: 0.5rem;
   }
-}
-
-.dark::-webkit-scrollbar {
-  width: 20px;
-}
-
-.dark::-webkit-scrollbar-track {
-  background: black;
-}
-
-.dark::-webkit-scrollbar-thumb {
-  background-color: black;
-  border-radius: 20px;
-}
-
-.dark {
-  scrollbar-width: 20px;
-  scrollbar-color: rgb(148 163 184) black;
-}
-
-.border {
-  border-width: 1px;
-  border-color: rgb(203 213 225);
-}
-
-:is(.dark .border) {
-  border-color: #30363D;
-}
-
-.border-l {
-  border-left-width: 1px;
-  border-color: rgb(203 213 225);
-}
-
-:is(.dark .border-l) {
-  border-color: #30363D;
-}
-
-.border-r {
-  border-right-width: 1px;
-  border-color: rgb(203 213 225);
-}
-
-:is(.dark .border-r) {
-  border-color: #30363D;
-}
-
-.border-t {
-  border-top-width: 1px;
-  border-color: rgb(203 213 225);
-}
-
-:is(.dark .border-t) {
-  border-color: #30363D;
-}
-
-.border-b {
-  border-bottom-width: 1px;
-  border-color: rgb(203 213 225);
-}
-
-:is(.dark .border-b) {
-  border-color: #30363D;
 }
