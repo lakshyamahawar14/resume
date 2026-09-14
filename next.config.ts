@@ -7,7 +7,22 @@ const nextConfig: NextConfig = {
   },
   images: {
     formats: ["image/avif", "image/webp"],
-    qualities: [75, 85, 100],
+    qualities: [100],
+    imageSizes: [16, 32, 48, 56, 64, 96, 128, 192, 256, 384],
+    minimumCacheTTL: 31536000,
+  },
+  async headers() {
+    return [
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+    ];
   },
   experimental: {
     optimizePackageImports: ["lucide-react"],

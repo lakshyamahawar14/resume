@@ -1,6 +1,6 @@
 "use client";
 
-import React, { memo, useCallback } from "react";
+import { memo, useCallback } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "./theme-provider";
 

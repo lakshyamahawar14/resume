@@ -1,47 +1,5 @@
-export interface ItemDetail {
-  title: string;
-  description: string[];
-}
+import { EducationItem, ExperienceItem, ProjectItem, SkillGroup, SocialLinkItem } from "@/types";
 
-export interface ExperienceItem {
-  start: string;
-  end: string;
-  period: number;
-  role: string;
-  organization: string;
-  score?: string;
-  details: ItemDetail;
-  tools?: string[];
-}
-
-export interface ProjectItem {
-  start: string;
-  end: string;
-  period: number;
-  organization: string;
-  details: ItemDetail;
-  tools?: string[];
-  link?: string;
-  imageSrc?: string;
-}
-
-export interface EducationItem {
-  year: number;
-  examination: string;
-  institution: string;
-  score: string;
-}
-
-export interface SkillGroup {
-  name: string;
-  values: string[];
-}
-
-export interface SocialLinkItem {
-  icon: string;
-  name: string;
-  route: string;
-}
 
 export const SOCIAL_LINKS: SocialLinkItem[] = [
   {
@@ -99,12 +57,14 @@ export const SKILLS: SkillGroup[] = [
       "Next.js",
       "React",
       "Node.js",
+      "TailwindCSS",
       "Express.js",
       "RESTful APIs",
       "OData",
       "Recoil",
       "Redux",
-      "Fiori UI",
+      "Zustand",
+      "SAP UI5",
     ],
   },
   {
@@ -119,7 +79,7 @@ export const SKILLS: SkillGroup[] = [
       "Firebase",
       "Docker",
       "Git",
-      "GitHub Actions",
+      "GitHub",
       "Azure DevOps (ADO)",
     ],
   },
@@ -216,7 +176,7 @@ export const PROJECTS: ProjectItem[] = [
         "The Stockfish code runs on the client side while the classification and commentary logic runs on server side using NextJS Edge runtime."
       ],
     },
-    tools: ["NodeJS", "Stockfish 18 Lite", "Tailwind"],
+    tools: ["NodeJS", "NextJS", "TailwindCSS", "Stockfish 18 Lite", "Zustand"],
     link: "https://chessrev.vercel.app/",
   },
   {
@@ -286,39 +246,9 @@ export const PROJECTS: ProjectItem[] = [
       "Pandas",
       "Pygame",
       "Graphs",
-      "Backtracking",
+      "Algorithms",
     ],
     link: "https://maze-ai.netlify.app/",
-  },
-  {
-    start: "July 2022",
-    end: "July 2022",
-    period: 1,
-    organization: "Self Project",
-    details: {
-      title: "Visual React Tool",
-      description: [
-        "Created a web application to generate code for ReactJS applications by joining blueprints (set of predefined components) visually.",
-        "Frontend was created using Svelte framework and OpenAI API was used in the backend.",
-      ],
-    },
-    tools: ["SvelteKit", "NodeJS", "GPT-3.5", "ChatGPT"],
-    link: "https://visual-react.vercel.app/",
-  },
-  {
-    start: "Dec 2021",
-    end: "Dec 2021",
-    period: 1,
-    organization: "Self Project",
-    details: {
-      title: "Questa Web",
-      description: [
-        "It's a question paper making website where its users can put questions and get a PDF generated.",
-        "This is made using NextJS and HTML2PDF API is used for PDF generation.",
-      ],
-    },
-    tools: ["NextJS", "HTML2PDF"],
-    link: "https://questaweb.vercel.app/",
   },
   {
     start: "October 2022",
@@ -333,19 +263,5 @@ export const PROJECTS: ProjectItem[] = [
       ],
     },
     tools: ["Python", "NLTK", "NLP", "Clustering", "Sentiment Analysis"],
-  },
-  {
-    start: "June 2021",
-    end: "July 2021",
-    period: 2,
-    organization: "IIT Roorkee",
-    details: {
-      title: "A Hardware Architecture Design For Realtime Gaussian Filter",
-      description: [
-        "Wrote a Python program to convert the JPG and PNG image formats to bitmap file format.",
-        "Wrote a MATLAB program to convert data of bitmap file format to Hexadecimal data for the ease of computation.",
-      ],
-    },
-    tools: ["MATLAB", "Python", "Image Processing"],
   },
 ];

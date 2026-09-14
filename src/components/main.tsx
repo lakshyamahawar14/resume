@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import { memo } from "react";
 import Link from "next/link";
 import {
   INTERESTS,
@@ -7,11 +7,9 @@ import {
   EXPERIENCES,
   INTERNSHIPS,
   PROJECTS,
-  ExperienceItem,
-  ProjectItem,
-  SkillGroup,
 } from "@/constants";
 import PdfViewer from "./pdf-viewer";
+import { ExperienceItem, ProjectItem, SkillGroup } from "@/types";
 
 const Main = () => {
   console.log('main.tsx rendered!');
@@ -320,7 +318,7 @@ const Main = () => {
                       <Link
                         href={project.link}
                         target="_blank"
-                        className="font-semibold py-2 px-4 rounded-lg text-caption bg-accent-primary hover:bg-accent-hover text-black shadow-xs transition-colors"
+                        className="font-semibold py-2 px-4 rounded-lg text-caption bg-accent-primary hover:bg-accent-hover text-black shadow-xs"
                       >
                         Explore Live Demo →
                       </Link>

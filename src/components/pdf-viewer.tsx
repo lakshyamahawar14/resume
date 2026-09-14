@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef, memo } from "react";
+import { useState, useEffect, useCallback, useRef, memo } from "react";
 import { Download, FileText, Loader2, ZoomIn, ZoomOut } from "lucide-react";
 
 const PdfViewer = () => {
@@ -28,16 +28,17 @@ const PdfViewer = () => {
       if (!context) return;
 
       const baseViewport = page.getViewport({ scale: 1.0 });
-      const containerStyle = window.getComputedStyle(containerRef.current);
-      const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
-      const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
-      const availableWidth = Math.floor(containerRef.current.getBoundingClientRect().width - paddingLeft - paddingRight);
+      const clientWidth = containerRef.current.clientWidth || 800;
+      const horizontalPadding = clientWidth >= 640 ? 48 : 32;
+      const availableWidth = Math.max(clientWidth - horizontalPadding, 280);
 
-      const fitScale = (availableWidth > 0 ? availableWidth : 800) / baseViewport.width;
+      const fitScale = availableWidth / baseViewport.width;
       const finalScale = fitScale * currentScale;
       const viewport = page.getViewport({ scale: finalScale });
 
-      const outputScale = window.devicePixelRatio || 1;
+      const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
+      const outputScale = Math.min(dpr, 1.5);
+
       canvas.width = Math.floor(viewport.width * outputScale);
       canvas.height = Math.floor(viewport.height * outputScale);
       canvas.style.width = `${Math.floor(viewport.width)}px`;
@@ -63,6 +64,7 @@ const PdfViewer = () => {
 
   useEffect(() => {
     let isCancelled = false;
+    let timerId: ReturnType<typeof setTimeout>;
 
     const initPdf = async () => {
       try {
@@ -72,6 +74,8 @@ const PdfViewer = () => {
         const loadingTask = pdfjsLib.getDocument({
           url: resumeUrl,
           cMapPacked: true,
+          disableAutoFetch: true,
+          disableStream: true,
         });
 
         const doc = await loadingTask.promise;
@@ -83,7 +87,7 @@ const PdfViewer = () => {
       }
     };
 
-    initPdf();
+    timerId = setTimeout(initPdf, 0);
 
     let animationFrameId: number;
     const handleResize = () => {
@@ -99,6 +103,7 @@ const PdfViewer = () => {
 
     return () => {
       isCancelled = true;
+      clearTimeout(timerId);
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
       if (renderTaskRef.current) {
@@ -122,7 +127,7 @@ const PdfViewer = () => {
   }, []);
 
   return (
-    <section className="flex flex-col w-full max-w-full mt-4 content-auto">
+    <section className="flex flex-col w-full max-w-full mt-4">
       <div className="flex items-center gap-2 mb-2">
         <span className="w-2 h-6 rounded-full bg-accent-primary" />
         <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
@@ -150,7 +155,7 @@ const PdfViewer = () => {
               >
                 <ZoomOut className="w-3.5 h-3.5" />
               </button>
-              <span className="px-2 text-slate-700 dark:text-slate-300 font-semibold">
+              <span className="px-2 text-slate-700 dark:text-slate-300 font-semibold select-none">
                 {Math.round(scale * 100)}%
               </span>
               <button
@@ -163,6 +168,7 @@ const PdfViewer = () => {
                 <ZoomIn className="w-3.5 h-3.5" />
               </button>
             </div>
+
             <a
               href={resumeUrl}
               download="Lakshya_Mahawar_Resume.pdf"
@@ -180,24 +186,29 @@ const PdfViewer = () => {
         ref={containerRef}
         className={`relative w-full max-w-full bg-slate-100 dark:bg-bg-secondary border-x border-b border-slate-200 dark:border-border-primary rounded-b-xl p-4 sm:p-6 text-left overflow-y-hidden ${
           scale > 1.0 ? "overflow-x-auto" : "overflow-x-hidden"
-        } ${isLoading ? "h-[200px] min-h-[200px]" : "h-auto"}`}
+        }`}
       >
-        {isLoading && (
-          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-slate-100 dark:bg-bg-secondary">
-            <Loader2 className="w-6 h-6 animate-spin text-accent-primary" />
-            <span className="text-caption font-medium text-slate-600 dark:text-slate-400">
-              Loading document...
-            </span>
+        <div
+          className={`w-full min-h-[200px] h-auto relative flex ${
+            scale > 1.0 ? "justify-start" : "justify-center"
+          }`}
+        >
+          {isLoading && (
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-slate-100 dark:bg-bg-secondary rounded-sm">
+              <Loader2 className="w-6 h-6 animate-spin text-accent-primary" />
+              <span className="text-caption font-medium text-slate-600 dark:text-slate-400">
+                Loading document...
+              </span>
+            </div>
+          )}
+          <div className="w-fit inline-block origin-top-left align-top shrink-0">
+            <canvas
+              ref={canvasRef}
+              className={`shadow-xs rounded-sm bg-white ${
+                isLoading ? "hidden" : "block"
+              }`}
+            />
           </div>
-        )}
-
-        <div className="w-fit min-w-full inline-block origin-top-left align-top">
-          <canvas
-            ref={canvasRef}
-            className={`shadow-xs rounded-sm bg-white block ${
-              isLoading ? "hidden" : "block"
-            }`}
-          />
         </div>
       </div>
     </section>
