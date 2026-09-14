@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
     qualities: [100],
     imageSizes: [16, 32, 48, 56, 64, 96, 128, 192],
     deviceSizes: [],
-    minimumCacheTTL: 0,
+    minimumCacheTTL: 31536000,
   },
   async headers() {
     return [
@@ -19,7 +19,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "no-store, no-cache, must-revalidate",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
@@ -28,7 +28,16 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "no-store, no-cache, must-revalidate",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/_next/static/media/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
           },
         ],
       },
