@@ -54,21 +54,6 @@ export const SOCIAL_LINKS: SocialLinkItem[] = [
     name: "LinkedIn",
     route: "https://www.linkedin.com/in/lakshya-mahawar-099788209/",
   },
-  {
-    icon: "Instagram",
-    name: "Instagram",
-    route: "https://www.instagram.com/freaky.lakshya/",
-  },
-  {
-    icon: "Code2",
-    name: "LeetCode",
-    route: "https://leetcode.com/lakshyamahawar14/",
-  },
-  {
-    icon: "Keyboard",
-    name: "10FastFingers",
-    route: "https://10fastfingers.com/user/2769484/",
-  },
 ];
 
 export const INTERESTS: string[] = [
@@ -217,6 +202,23 @@ export const INTERNSHIPS: ExperienceItem[] = [
 ];
 
 export const PROJECTS: ProjectItem[] = [
+  {
+    start: "Aug 2026",
+    end: "Sep 2026",
+    period: 1,
+    organization: "Self Project",
+    details: {
+      title: "ChessRev - Free Chess.com games review",
+      description: [
+        "Created a web app using NextJS and tailwind to analyze Chess.com games for free using Stockfish 18 Lite.",
+        "It has features like importing recent games of a profile on Chess.com, adding any game from PGN or url of any Chess.com game.",
+        "It displays the top engine lines at each move, shows the move classification and a coach commentary based on the tactics of the position.",
+        "The Stockfish code runs on the client side while the classification and commentary logic runs on server side using NextJS Edge runtime."
+      ],
+    },
+    tools: ["NodeJS", "Stockfish 18 Lite", "Tailwind"],
+    link: "https://chessrev.vercel.app/",
+  },
   {
     start: "January 2026",
     end: "February 2026",

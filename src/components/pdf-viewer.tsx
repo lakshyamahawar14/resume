@@ -1,89 +1,151 @@
 "use client";
 
-import { useState, useEffect, useMemo, type ComponentType } from "react";
-import {
-  Download,
-  ExternalLink,
-  FileText,
-  ChevronLeft,
-  ChevronRight,
-  ZoomIn,
-  ZoomOut,
-} from "lucide-react";
+import React, { useState, useEffect, useCallback, useRef, memo } from "react";
+import { Download, ExternalLink, FileText, Loader2, ZoomIn, ZoomOut } from "lucide-react";
 import Link from "next/link";
 
-interface ReactPdfComponents {
-  Document: ComponentType<any>;
-  Page: ComponentType<any>;
-}
-
 const PdfViewer = () => {
+  console.log('pdf-viewer.tsx rendered!');
   const resumeUrl = "/resume.pdf";
-  const [pdfComponents, setPdfComponents] = useState<ReactPdfComponents | null>(null);
-  const [numPages, setNumPages] = useState<number>(0);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-  const [scale, setScale] = useState<number>(1.0);
+  const [scale, setScale] = useState(1.0);
+  const [isLoading, setIsLoading] = useState(true);
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const pdfDocRef = useRef<any>(null);
+  const renderTaskRef = useRef<any>(null);
 
-  useEffect(() => {
-    import("react-pdf").then((mod) => {
-      mod.pdfjs.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${mod.pdfjs.version}/build/pdf.worker.min.mjs`;
-      setPdfComponents({
-        Document: mod.Document,
-        Page: mod.Page,
-      });
-    });
+  const drawPage = useCallback(async (doc: any, currentScale: number) => {
+    if (!doc || !canvasRef.current || !containerRef.current) return;
+
+    if (renderTaskRef.current) {
+      renderTaskRef.current.cancel();
+      renderTaskRef.current = null;
+    }
+
+    try {
+      const page = await doc.getPage(1);
+      const canvas = canvasRef.current;
+      const context = canvas.getContext("2d");
+      if (!context) return;
+
+      const baseViewport = page.getViewport({ scale: 1.0 });
+      const containerStyle = window.getComputedStyle(containerRef.current);
+      const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
+      const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
+      const availableWidth = Math.floor(containerRef.current.getBoundingClientRect().width - paddingLeft - paddingRight);
+
+      const fitScale = (availableWidth > 0 ? availableWidth : 800) / baseViewport.width;
+      const finalScale = fitScale * currentScale;
+      const viewport = page.getViewport({ scale: finalScale });
+
+      const outputScale = window.devicePixelRatio || 1;
+      canvas.width = Math.floor(viewport.width * outputScale);
+      canvas.height = Math.floor(viewport.height * outputScale);
+      canvas.style.width = `${Math.floor(viewport.width)}px`;
+      canvas.style.height = `${Math.floor(viewport.height)}px`;
+
+      context.setTransform(outputScale, 0, 0, outputScale, 0, 0);
+
+      const renderContext = {
+        canvasContext: context,
+        viewport,
+      };
+
+      const task = page.render(renderContext);
+      renderTaskRef.current = task;
+      await task.promise;
+      setIsLoading(false);
+    } catch (err: any) {
+      if (err?.name !== "RenderingCancelledException") {
+        console.error(err);
+      }
+    }
   }, []);
 
-  const pdfOptions = useMemo(
-    () => ({
-      cMapPacked: true,
-      disableRange: true,
-      disableStream: true,
-    }),
-    []
-  );
+  useEffect(() => {
+    let isCancelled = false;
 
-  const onDocumentLoadSuccess = ({ numPages }: { numPages: number }) => {
-    setNumPages(numPages);
-    setPageNumber(1);
-  };
+    const initPdf = async () => {
+      try {
+        const pdfjsLib = await import("pdfjs-dist/build/pdf.mjs");
+        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
-  const prevPage = () => setPageNumber((prev) => Math.max(prev - 1, 1));
-  const nextPage = () => setPageNumber((prev) => Math.min(prev + 1, numPages));
-  const zoomIn = () => setScale((prev) => Math.min(prev + 0.15, 2.0));
-  const zoomOut = () => setScale((prev) => Math.max(prev - 0.15, 0.6));
+        const loadingTask = pdfjsLib.getDocument({
+          url: resumeUrl,
+          cMapPacked: true,
+        });
 
-  if (!pdfComponents) {
-    return (
-      <div className="w-full h-[600px] lg:h-[650px] rounded-xl bg-slate-100 dark:bg-slate-900 mt-4 lg:mt-6 border border-slate-200 dark:border-slate-800" />
-    );
-  }
+        const doc = await loadingTask.promise;
+        if (isCancelled) return;
+        pdfDocRef.current = doc;
+        await drawPage(doc, scale);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  const { Document, Page } = pdfComponents;
+    initPdf();
+
+    let animationFrameId: number;
+    const handleResize = () => {
+      cancelAnimationFrame(animationFrameId);
+      animationFrameId = requestAnimationFrame(() => {
+        if (pdfDocRef.current) {
+          drawPage(pdfDocRef.current, scale);
+        }
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      isCancelled = true;
+      cancelAnimationFrame(animationFrameId);
+      window.removeEventListener("resize", handleResize);
+      if (renderTaskRef.current) {
+        renderTaskRef.current.cancel();
+      }
+    };
+  }, [drawPage, scale]);
+
+  useEffect(() => {
+    if (pdfDocRef.current) {
+      drawPage(pdfDocRef.current, scale);
+    }
+  }, [scale, drawPage]);
+
+  const zoomIn = useCallback(() => {
+    setScale((prev) => Math.min(Number((prev + 0.1).toFixed(2)), 2.0));
+  }, []);
+
+  const zoomOut = useCallback(() => {
+    setScale((prev) => Math.max(Number((prev - 0.1).toFixed(2)), 0.6));
+  }, []);
 
   return (
-    <section className="flex flex-col w-full mt-4 content-auto">
+    <section className="flex flex-col w-full max-w-full mt-4 content-auto">
       <div className="flex items-center gap-2 mb-2">
-        <span className="w-2 h-6 rounded-full bg-indigo-500" />
-        <h2 className="text-slate-900 dark:text-slate-100 text-[20px] font-bold tracking-tight">
-          Curriculum Vitae
+        <span className="w-2 h-6 rounded-full bg-accent-primary" />
+        <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
+          Resume
         </h2>
       </div>
 
-      <div className="w-full border border-slate-200 dark:border-slate-800 rounded-t-xl bg-white dark:bg-[#111622] p-3 lg:p-4">
+      <div className="w-full max-w-full border border-slate-200 dark:border-border-primary rounded-t-xl bg-white dark:bg-bg-primary p-3 lg:p-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 w-full">
           <div className="flex items-center gap-2">
-            <FileText className="w-5 h-5 text-indigo-600 dark:text-indigo-400 shrink-0" />
-            <span className="text-[14px] font-semibold text-slate-800 dark:text-slate-200">
+            <FileText className="w-5 h-5 text-accent-primary shrink-0" />
+            <span className="text-body font-semibold text-slate-800 dark:text-slate-200">
               resume.pdf
             </span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2 w-full sm:w-auto justify-start sm:justify-end">
-            <div className="flex items-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-1 text-[12px]">
+            <div className="flex items-center bg-slate-100 dark:bg-bg-card border border-slate-200 dark:border-border-primary rounded-lg p-1 text-caption">
               <button
+                type="button"
                 onClick={zoomOut}
-                disabled={scale <= 0.6}
+                disabled={scale <= 0.6 || isLoading}
                 className="p-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white disabled:opacity-30 cursor-pointer"
                 aria-label="Zoom Out"
               >
@@ -93,8 +155,9 @@ const PdfViewer = () => {
                 {Math.round(scale * 100)}%
               </span>
               <button
+                type="button"
                 onClick={zoomIn}
-                disabled={scale >= 2.0}
+                disabled={scale >= 2.0 || isLoading}
                 className="p-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white disabled:opacity-30 cursor-pointer"
                 aria-label="Zoom In"
               >
@@ -102,35 +165,11 @@ const PdfViewer = () => {
               </button>
             </div>
 
-            {numPages > 1 && (
-              <div className="flex items-center bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-1 text-[12px]">
-                <button
-                  onClick={prevPage}
-                  disabled={pageNumber <= 1}
-                  className="p-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white disabled:opacity-30 cursor-pointer"
-                  aria-label="Previous Page"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                </button>
-                <span className="px-2 text-slate-700 dark:text-slate-300 font-semibold select-none">
-                  {pageNumber} / {numPages}
-                </span>
-                <button
-                  onClick={nextPage}
-                  disabled={pageNumber >= numPages}
-                  className="p-1 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white disabled:opacity-30 cursor-pointer"
-                  aria-label="Next Page"
-                >
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            )}
-
             <Link
               href={resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+              className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-bg-card transition-colors"
               aria-label="Open Resume in new tab"
             >
               <ExternalLink className="w-4 h-4" />
@@ -139,7 +178,7 @@ const PdfViewer = () => {
             <a
               href={resumeUrl}
               download="Lakshya_Mahawar_Resume.pdf"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white text-[12px] font-semibold rounded-lg shadow-xs cursor-pointer transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-accent-primary hover:bg-accent-hover text-black text-caption font-semibold rounded-lg shadow-xs cursor-pointer transition-colors"
               aria-label="Download Resume PDF"
             >
               <Download className="w-3.5 h-3.5" />
@@ -149,40 +188,32 @@ const PdfViewer = () => {
         </div>
       </div>
 
-      <div className="w-full min-h-[500px] lg:min-h-[550px] max-h-[850px] overflow-auto bg-slate-100 dark:bg-[#07090e] border-x border-b border-slate-200 dark:border-slate-800 rounded-b-xl flex justify-center items-start p-2 sm:p-4">
-        <Document
-          file={resumeUrl}
-          options={pdfOptions}
-          onLoadSuccess={onDocumentLoadSuccess}
-          loading={
-            <div className="flex items-center justify-center py-20 text-indigo-500 text-[14px]">
+      <div
+        ref={containerRef}
+        className={`relative w-full max-w-full bg-slate-100 dark:bg-bg-secondary border-x border-b border-slate-200 dark:border-border-primary rounded-b-xl p-4 sm:p-6 text-left overflow-y-hidden ${
+          scale > 1.0 ? "overflow-x-auto" : "overflow-x-hidden"
+        } ${isLoading ? "h-[200px] min-h-[200px]" : "h-auto"}`}
+      >
+        {isLoading && (
+          <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-slate-100 dark:bg-bg-secondary">
+            <Loader2 className="w-6 h-6 animate-spin text-accent-primary" />
+            <span className="text-caption font-medium text-slate-600 dark:text-slate-400">
               Loading document...
-            </div>
-          }
-          error={
-            <div className="flex flex-col items-center justify-center py-20 gap-2 text-slate-500 text-[14px]">
-              <p>Unable to display PDF preview.</p>
-              <a
-                href={resumeUrl}
-                download="Lakshya_Mahawar_Resume.pdf"
-                className="underline text-[12px] text-indigo-500"
-              >
-                Download directly instead
-              </a>
-            </div>
-          }
-        >
-          <Page
-            pageNumber={pageNumber}
-            scale={scale}
-            renderTextLayer={false}
-            renderAnnotationLayer={false}
-            className="shadow-sm rounded-lg overflow-hidden bg-white max-w-full"
+            </span>
+          </div>
+        )}
+
+        <div className="w-fit min-w-full inline-block origin-top-left align-top">
+          <canvas
+            ref={canvasRef}
+            className={`shadow-xs rounded-sm bg-white block ${
+              isLoading ? "hidden" : "block"
+            }`}
           />
-        </Document>
+        </div>
       </div>
     </section>
   );
 };
 
-export default PdfViewer;
+export default memo(PdfViewer);
