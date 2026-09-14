@@ -1,6 +1,9 @@
-import React, { memo } from "react";
+"use client";
+
+import React, { useState, useCallback, memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Menu, X } from "lucide-react";
 import DarkMode from "./darkmode";
 import { SOCIAL_LINKS, SocialLinkItem } from "@/constants";
 import { GithubIcon, LinkedinIcon } from "./icons";
@@ -18,6 +21,12 @@ const getIcon = (iconName: string) => {
 
 const SideBar = () => {
   console.log('sidebar.tsx rendered!');
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
+
   return (
     <aside className="sticky top-0 left-0 z-30 w-full lg:w-[300px] lg:min-w-[300px] lg:max-w-[300px] lg:shrink-0 h-auto lg:h-screen lg:max-h-screen p-4 lg:py-6 lg:px-6 flex flex-col justify-start items-center gap-4 bg-white dark:bg-bg-primary border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-border-primary shadow-xs overflow-y-auto lg:overflow-hidden">
       <div className="flex flex-row lg:flex-col justify-between lg:justify-center items-center gap-3 lg:gap-4 w-full">
@@ -47,12 +56,21 @@ const SideBar = () => {
           </div>
         </div>
 
-        <div className="flex items-center shrink-0">
-          <DarkMode />
-        </div>
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          aria-label="Toggle navigation menu"
+          className="flex lg:hidden items-center justify-center p-2 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-bg-card cursor-pointer shrink-0"
+        >
+          {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
       </div>
 
-      <div className="w-full hidden lg:flex flex-col gap-4">
+      <div
+        className={`w-full flex-col gap-4 pt-2 lg:pt-0 border-t border-slate-200 dark:border-border-primary lg:border-t-0 ${
+          isOpen ? "flex" : "hidden lg:flex"
+        }`}
+      >
         <div className="flex flex-col">
           <p className="text-accent-primary text-caption font-bold tracking-wider">
             About
@@ -70,7 +88,7 @@ const SideBar = () => {
             <p className="text-slate-800 dark:text-slate-200 text-body font-medium break-words mt-0.5">
               <Link
                 href="mailto:lakshyamahawar14@gmail.com"
-                className="hover:text-accent-primary transition-colors underline-offset-2 hover:underline"
+                className="hover:text-accent-primary underline-offset-2 hover:underline"
               >
                 lakshyamahawar14@gmail.com
               </Link>
@@ -99,13 +117,17 @@ const SideBar = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="w-9 h-9 flex justify-center items-center rounded-lg hover:text-accent-primary text-slate-600 dark:text-slate-300 transition-colors shrink-0 aspect-square"
+                  className="w-9 h-9 flex justify-center items-center rounded-lg hover:text-accent-primary text-slate-600 dark:text-slate-300 shrink-0 aspect-square"
                 >
                   {getIcon(link.icon)}
                 </Link>
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="flex items-center justify-center w-full pt-2 border-t border-slate-200 dark:border-border-primary">
+          <DarkMode />
         </div>
       </div>
     </aside>

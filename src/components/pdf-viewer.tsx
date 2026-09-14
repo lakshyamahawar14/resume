@@ -151,7 +151,7 @@ const PdfViewer = () => {
               >
                 <ZoomOut className="w-3.5 h-3.5" />
               </button>
-              <span className="px-2 text-slate-700 dark:text-slate-300 font-semibold select-none">
+              <span className="px-2 text-slate-700 dark:text-slate-300 font-semibold">
                 {Math.round(scale * 100)}%
               </span>
               <button
@@ -164,21 +164,10 @@ const PdfViewer = () => {
                 <ZoomIn className="w-3.5 h-3.5" />
               </button>
             </div>
-
-            <Link
-              href={resumeUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white rounded-lg hover:bg-slate-100 dark:hover:bg-bg-card transition-colors"
-              aria-label="Open Resume in new tab"
-            >
-              <ExternalLink className="w-4 h-4" />
-            </Link>
-
             <a
               href={resumeUrl}
               download="Lakshya_Mahawar_Resume.pdf"
-              className="flex items-center gap-1.5 px-3 py-1.5 bg-accent-primary hover:bg-accent-hover text-black text-caption font-semibold rounded-lg shadow-xs cursor-pointer transition-colors"
+              className="flex items-center gap-1.5 px-3 py-1.5 bg-accent-primary hover:bg-accent-hover text-black text-caption font-semibold rounded-lg shadow-xs cursor-pointer"
               aria-label="Download Resume PDF"
             >
               <Download className="w-3.5 h-3.5" />

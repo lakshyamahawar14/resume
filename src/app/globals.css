@@ -49,6 +49,7 @@
     color: #0f172a;
     overflow-x: hidden;
     font-family: var(--font-sans);
+    user-select: none;
   }
 
   :is(.dark body) {
