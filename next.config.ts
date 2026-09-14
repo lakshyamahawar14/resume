@@ -23,6 +23,15 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/resume.pdf",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "no-store, no-cache, must-revalidate",
+          },
+        ],
+      },
     ];
   },
   experimental: {

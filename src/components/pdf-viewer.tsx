@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, memo } from "react";
-import { Download, FileText, Loader2, ZoomIn, ZoomOut } from "lucide-react";
+import { Download, FileText, ZoomIn, ZoomOut } from "lucide-react";
 
 const PdfViewer = () => {
   console.log('pdf-viewer.tsx rendered!');
@@ -12,6 +12,7 @@ const PdfViewer = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pdfDocRef = useRef<any>(null);
   const renderTaskRef = useRef<any>(null);
+  const isMountedRef = useRef(false);
 
   const drawPage = useCallback(async (doc: any, currentScale: number) => {
     if (!doc || !canvasRef.current || !containerRef.current) return;
@@ -24,7 +25,7 @@ const PdfViewer = () => {
     try {
       const page = await doc.getPage(1);
       const canvas = canvasRef.current;
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", { alpha: false });
       if (!context) return;
 
       const baseViewport = page.getViewport({ scale: 1.0 });
@@ -37,7 +38,7 @@ const PdfViewer = () => {
       const viewport = page.getViewport({ scale: finalScale });
 
       const dpr = typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1;
-      const outputScale = Math.min(dpr, 1.5);
+      const outputScale = Math.min(dpr, 1.25);
 
       canvas.width = Math.floor(viewport.width * outputScale);
       canvas.height = Math.floor(viewport.height * outputScale);
@@ -49,6 +50,7 @@ const PdfViewer = () => {
       const renderContext = {
         canvasContext: context,
         viewport,
+        intent: "display",
       };
 
       const task = page.render(renderContext);
@@ -64,56 +66,62 @@ const PdfViewer = () => {
 
   useEffect(() => {
     let isCancelled = false;
-    let timerId: ReturnType<typeof setTimeout>;
 
     const initPdf = async () => {
       try {
-        const pdfjsLib = await import("pdfjs-dist/build/pdf.mjs");
-        pdfjsLib.GlobalWorkerOptions.workerSrc = `https://unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
+        const [pdfjsLib, response] = await Promise.all([
+          import("pdfjs-dist/build/pdf.mjs"),
+          fetch(resumeUrl),
+        ]);
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+          "pdfjs-dist/build/pdf.worker.min.mjs",
+          import.meta.url
+        ).toString();
+
+        const arrayBuffer = await response.arrayBuffer();
+        if (isCancelled) return;
 
         const loadingTask = pdfjsLib.getDocument({
-          url: resumeUrl,
-          cMapPacked: true,
+          data: arrayBuffer,
+          cMapPacked: false,
           disableAutoFetch: true,
           disableStream: true,
+          isEvalSupported: false,
+          disableFontFace: true,
         });
 
         const doc = await loadingTask.promise;
         if (isCancelled) return;
         pdfDocRef.current = doc;
+        isMountedRef.current = true;
         await drawPage(doc, scale);
       } catch (err) {
         console.error(err);
       }
     };
 
-    timerId = setTimeout(initPdf, 0);
+    initPdf();
 
-    let animationFrameId: number;
     const handleResize = () => {
-      cancelAnimationFrame(animationFrameId);
-      animationFrameId = requestAnimationFrame(() => {
-        if (pdfDocRef.current) {
-          drawPage(pdfDocRef.current, scale);
-        }
-      });
+      if (pdfDocRef.current) {
+        drawPage(pdfDocRef.current, scale);
+      }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", handleResize, { passive: true });
 
     return () => {
       isCancelled = true;
-      clearTimeout(timerId);
-      cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
       if (renderTaskRef.current) {
         renderTaskRef.current.cancel();
       }
     };
-  }, [drawPage, scale]);
+  }, [drawPage]);
 
   useEffect(() => {
-    if (pdfDocRef.current) {
+    if (isMountedRef.current && pdfDocRef.current) {
       drawPage(pdfDocRef.current, scale);
     }
   }, [scale, drawPage]);
@@ -127,14 +135,7 @@ const PdfViewer = () => {
   }, []);
 
   return (
-    <section className="flex flex-col w-full max-w-full mt-4">
-      <div className="flex items-center gap-2 mb-2">
-        <span className="w-2 h-6 rounded-full bg-accent-primary" />
-        <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
-          Resume
-        </h2>
-      </div>
-
+    <div className="flex flex-col w-full max-w-full my-1.5 lg:my-2">
       <div className="w-full max-w-full border border-slate-200 dark:border-border-primary rounded-t-xl bg-white dark:bg-bg-primary p-3 lg:p-4">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 w-full">
           <div className="flex items-center gap-2">
@@ -189,14 +190,14 @@ const PdfViewer = () => {
         }`}
       >
         <div
-          className={`w-full min-h-[200px] h-auto relative flex ${
-            scale > 1.0 ? "justify-start" : "justify-center"
-          }`}
+          className={`w-full relative flex ${
+            isLoading ? "h-[200px]" : "h-auto"
+          } ${scale > 1.0 ? "justify-start" : "justify-center"}`}
         >
           {isLoading && (
-            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 bg-slate-100 dark:bg-bg-secondary rounded-sm">
-              <Loader2 className="w-6 h-6 animate-spin text-accent-primary" />
-              <span className="text-caption font-medium text-slate-600 dark:text-slate-400">
+            <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-3 bg-slate-100 dark:bg-bg-secondary rounded-sm">
+              <div className="w-7 h-7 rounded-full border-2 border-slate-300 dark:border-slate-600 border-t-accent-primary animate-spin" />
+              <span className="text-caption font-medium text-slate-600 dark:text-slate-400 select-none">
                 Loading document...
               </span>
             </div>
@@ -211,7 +212,7 @@ const PdfViewer = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

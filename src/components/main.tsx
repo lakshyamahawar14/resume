@@ -331,7 +331,15 @@ const Main = () => {
         </div>
       </section>
 
-      <PdfViewer />
+      <section className="flex flex-col w-full">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="w-2 h-6 rounded-full bg-accent-primary" />
+          <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
+            Resume
+          </h2>
+        </div>
+        <PdfViewer />
+      </section>
     </main>
   );
 };

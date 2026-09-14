@@ -43,6 +43,7 @@ const ProfileImage = memo(() => (
 ProfileImage.displayName = "ProfileImage";
 
 const SideBar = () => {
+  console.log('sidebar.tsx rendered!');
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleSidebar = useCallback(() => {
@@ -71,12 +72,12 @@ const SideBar = () => {
           </div>
         )}
 
-        <div className={`flex items-center gap-3 lg:gap-3.5 w-full min-w-0 ${isOpen ? "hidden lg:flex lg:flex-col lg:items-center" : "flex-row lg:flex-col"}`}>
-          <div className="rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 bg-white dark:bg-bg-primary w-14 h-14 min-w-14 min-h-14 lg:w-48 lg:h-48 lg:min-w-48 lg:min-h-48 relative">
+        <div className={`flex items-center gap-3 lg:gap-3.5 w-full min-w-0 ${isOpen ? "flex-col text-center" : "flex-row lg:flex-col lg:text-center text-left"}`}>
+          <div className={`rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 bg-white dark:bg-bg-primary relative ${isOpen ? "w-48 h-48 min-w-48 min-h-48" : "w-14 h-14 min-w-14 min-h-14 lg:w-48 lg:h-48 lg:min-w-48 lg:min-h-48"}`}>
             <ProfileImage />
           </div>
 
-          <div className="text-left lg:text-center w-full min-w-0">
+          <div className="w-full min-w-0">
             <h1 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
               Lakshya Mahawar
             </h1>
@@ -103,22 +104,6 @@ const SideBar = () => {
           isOpen ? "flex items-center" : "hidden lg:flex"
         }`}
       >
-        {isOpen && (
-          <div className="flex lg:hidden flex-col items-center gap-2 w-full pb-1">
-            <div className="w-48 h-48 min-w-48 min-h-48 rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 bg-white dark:bg-bg-primary relative">
-              <ProfileImage />
-            </div>
-            <div className="text-center w-full min-w-0">
-              <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
-                Lakshya Mahawar
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-caption font-medium break-words mt-0.5">
-                Software Engineer @ <span className="text-accent-primary font-semibold">V3iT</span>
-              </p>
-            </div>
-          </div>
-        )}
-
         <div className="w-full flex flex-col pt-2 border-t border-slate-200 dark:border-border-primary lg:border-t-0">
           <p className="text-accent-primary text-caption font-bold tracking-wider">
             About

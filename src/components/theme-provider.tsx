@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useMemo } from "react";
+import React, { createContext, useContext, useState, useMemo, useCallback } from "react";
 
 type Theme = "light" | "dark";
 
@@ -26,18 +26,18 @@ export function ThemeProvider({
   console.log('theme-provider.tsx rendered!');
   const [theme, setThemeState] = useState<Theme>(initialTheme);
 
-  const setTheme = (newTheme: Theme) => {
+  const setTheme = useCallback((newTheme: Theme) => {
     setThemeState(newTheme);
     document.cookie = `theme=${newTheme}; path=/; max-age=31536000; SameSite=Lax`;
     document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
+  }, []);
 
   const value = useMemo(
     () => ({
       resolvedTheme: theme,
       setTheme,
     }),
-    [theme]
+    [theme, setTheme]
   );
 
   return (
