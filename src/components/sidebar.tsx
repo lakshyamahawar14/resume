@@ -12,13 +12,35 @@ import { SocialLinkItem } from "@/types";
 const getIcon = (iconName: string) => {
   switch (iconName) {
     case "Github":
-      return <GithubIcon className="w-5 h-5 shrink-0" />;
+      return <MemoizedGithubIcon />;
     case "Linkedin":
-      return <LinkedinIcon className="w-5 h-5 shrink-0" />;
+      return <MemoizedLinkedinIcon />;
     default:
       return null;
   }
 };
+
+const MemoizedGithubIcon = memo(() => <GithubIcon className="w-5 h-5 shrink-0" />);
+MemoizedGithubIcon.displayName = "MemoizedGithubIcon";
+
+const MemoizedLinkedinIcon = memo(() => <LinkedinIcon className="w-5 h-5 shrink-0" />);
+MemoizedLinkedinIcon.displayName = "MemoizedLinkedinIcon";
+
+const ProfileImage = memo(() => (
+  <Image
+    src="/images/profile.avif"
+    width={192}
+    height={192}
+    quality={100}
+    priority={true}
+    loading="eager"
+    decoding="async"
+    sizes="192px"
+    alt="Lakshya Mahawar profile photo"
+    className="rounded-full object-cover object-center w-full h-full block"
+  />
+));
+ProfileImage.displayName = "ProfileImage";
 
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -51,32 +73,7 @@ const SideBar = () => {
 
         <div className={`flex items-center gap-3 lg:gap-3.5 w-full min-w-0 ${isOpen ? "hidden lg:flex lg:flex-col lg:items-center" : "flex-row lg:flex-col"}`}>
           <div className="rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 bg-white dark:bg-bg-primary w-14 h-14 min-w-14 min-h-14 lg:w-48 lg:h-48 lg:min-w-48 lg:min-h-48 relative">
-            <div className="block lg:hidden w-14 h-14">
-              <Image
-                src="/images/profile.webp"
-                width={56}
-                height={56}
-                quality={100}
-                priority={false}
-                loading="lazy"
-                decoding="async"
-                alt="Lakshya Mahawar profile photo"
-                className="rounded-full object-cover object-center w-full h-full block"
-              />
-            </div>
-            <div className="hidden lg:block w-48 h-48">
-              <Image
-                src="/images/profile.webp"
-                width={192}
-                height={192}
-                quality={100}
-                priority={false}
-                loading="lazy"
-                decoding="async"
-                alt="Lakshya Mahawar profile photo"
-                className="rounded-full object-cover object-center w-full h-full block"
-              />
-            </div>
+            <ProfileImage />
           </div>
 
           <div className="text-left lg:text-center w-full min-w-0">
@@ -108,18 +105,8 @@ const SideBar = () => {
       >
         {isOpen && (
           <div className="flex lg:hidden flex-col items-center gap-2 w-full pb-1">
-            <div className="w-48 h-48 min-w-48 min-h-48 rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 bg-white dark:bg-bg-primary">
-              <Image
-                src="/images/profile.webp"
-                width={192}
-                height={192}
-                quality={100}
-                priority={false}
-                loading="lazy"
-                decoding="async"
-                alt="Lakshya Mahawar profile photo"
-                className="rounded-full object-cover object-center w-full h-full block"
-              />
+            <div className="w-48 h-48 min-w-48 min-h-48 rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 bg-white dark:bg-bg-primary relative">
+              <ProfileImage />
             </div>
             <div className="text-center w-full min-w-0">
               <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">

@@ -8,8 +8,9 @@ const nextConfig: NextConfig = {
   images: {
     formats: ["image/avif", "image/webp"],
     qualities: [100],
-    imageSizes: [16, 32, 48, 56, 64, 96, 128, 192, 256, 384],
-    minimumCacheTTL: 31536000,
+    imageSizes: [16, 32, 48, 56, 64, 96, 128, 192],
+    deviceSizes: [],
+    minimumCacheTTL: 0,
   },
   async headers() {
     return [
@@ -18,7 +19,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "no-store, no-cache, must-revalidate",
           },
         ],
       },
