@@ -7,7 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
-  display: "swap",
+  display: "block",
+  preload: true,
 });
 
 export const metadata: Metadata = {
