@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef, memo } from "react";
-import { Download, ExternalLink, FileText, Loader2, ZoomIn, ZoomOut } from "lucide-react";
-import Link from "next/link";
+import { Download, FileText, Loader2, ZoomIn, ZoomOut } from "lucide-react";
 
 const PdfViewer = () => {
   console.log('pdf-viewer.tsx rendered!');

@@ -35,12 +35,10 @@ const SideBar = () => {
             <Image
               src="/images/profile.webp"
               fill
-              sizes="(min-width: 1024px) 384px, 160px"
-              quality={100}
-              unoptimized={true}
+              sizes="(min-width: 1024px) 192px, 40px"
+              quality={85}
               priority={true}
               loading="eager"
-              decoding="sync"
               alt="Lakshya Mahawar profile photo"
               className="rounded-full object-cover object-center block"
             />
@@ -126,7 +124,10 @@ const SideBar = () => {
           </ul>
         </div>
 
-        <div className="flex items-center justify-center w-full pt-2 border-t border-slate-200 dark:border-border-primary">
+        <div className="flex items-center justify-between w-full pt-2 border-t border-slate-200 dark:border-border-primary">
+          <span className="text-caption font-medium text-slate-500 dark:text-slate-400">
+            Theme
+          </span>
           <DarkMode />
         </div>
       </div>

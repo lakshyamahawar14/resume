@@ -17,7 +17,7 @@ const Main = () => {
   console.log('main.tsx rendered!');
   return (
     <main className="px-2.5 py-4 lg:p-10 flex flex-col gap-6 lg:gap-10 w-full max-w-5xl">
-      <section className="flex flex-col w-full content-auto">
+      <section className="flex flex-col w-full">
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-6 rounded-full bg-accent-primary" />
           <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
@@ -35,7 +35,7 @@ const Main = () => {
         </div>
       </section>
 
-      <section className="flex flex-col w-full content-auto">
+      <section className="flex flex-col w-full">
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-6 rounded-full bg-accent-primary" />
           <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
@@ -72,7 +72,7 @@ const Main = () => {
         </div>
       </section>
 
-      <section className="flex flex-col w-full content-auto">
+      <section className="flex flex-col w-full">
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-6 rounded-full bg-accent-primary" />
           <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
@@ -100,7 +100,7 @@ const Main = () => {
         </div>
       </section>
 
-      <section className="flex flex-col w-full content-auto">
+      <section className="flex flex-col w-full">
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-6 rounded-full bg-accent-primary" />
           <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
@@ -156,7 +156,7 @@ const Main = () => {
 
                 {exp.tools && (
                   <div className="flex flex-col text-left pt-1">
-                    <p className="text-slate-400 dark:text-slate-500 text-caption font-bold tracking-wider mb-2">
+                    <p className="text-slate-600 dark:text-slate-400 text-caption font-bold tracking-wider mb-2">
                       Technologies
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -177,7 +177,7 @@ const Main = () => {
         </div>
       </section>
 
-      <section className="flex flex-col w-full content-auto">
+      <section className="flex flex-col w-full">
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-6 rounded-full bg-accent-primary" />
           <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
@@ -233,7 +233,7 @@ const Main = () => {
 
                 {intern.tools && (
                   <div className="flex flex-col text-left pt-1">
-                    <p className="text-slate-400 dark:text-slate-500 text-caption font-bold tracking-wider mb-2">
+                    <p className="text-slate-600 dark:text-slate-400 text-caption font-bold tracking-wider mb-2">
                       Technologies
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -254,7 +254,7 @@ const Main = () => {
         </div>
       </section>
 
-      <section className="flex flex-col w-full content-auto">
+      <section className="flex flex-col w-full">
         <div className="flex items-center gap-2 mb-2">
           <span className="w-2 h-6 rounded-full bg-accent-primary" />
           <h2 className="text-slate-900 dark:text-slate-100 text-title font-bold tracking-tight break-words">
@@ -298,7 +298,7 @@ const Main = () => {
 
                 {project.tools && (
                   <div className="flex flex-col text-left pt-1">
-                    <p className="text-slate-400 dark:text-slate-500 text-caption font-bold tracking-wider mb-2">
+                    <p className="text-slate-600 dark:text-slate-400 text-caption font-bold tracking-wider mb-2">
                       Stack & Tools
                     </p>
                     <div className="flex flex-wrap gap-2">
@@ -320,7 +320,7 @@ const Main = () => {
                       <Link
                         href={project.link}
                         target="_blank"
-                        className="font-semibold py-2 px-4 rounded-lg text-caption bg-accent-primary hover:bg-accent-hover text-black shadow-xs"
+                        className="font-semibold py-2 px-4 rounded-lg text-caption bg-accent-primary hover:bg-accent-hover text-black shadow-xs transition-colors"
                       >
                         Explore Live Demo →
                       </Link>
