@@ -80,7 +80,7 @@ const Main = () => {
         <div className="bg-white dark:bg-bg-primary border border-slate-200 dark:border-border-primary shadow-xs rounded-xl p-4 lg:p-6 w-full flex flex-col gap-5 my-1.5 lg:my-2">
           {SKILLS.map((skill: SkillGroup, index: number) => (
             <div key={index} className="flex flex-col gap-2.5">
-              <h3 className="text-slate-700 dark:text-slate-300 text-caption font-bold tracking-wide uppercase">
+              <h3 className="text-slate-700 dark:text-slate-300 text-caption font-bold tracking-wide">
                 {skill.name}
               </h3>
               <div className="flex flex-wrap gap-2">
