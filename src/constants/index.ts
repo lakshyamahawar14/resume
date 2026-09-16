@@ -215,7 +215,7 @@ export const PROJECTS: ProjectItem[] = [
       "Graphs",
       "Algorithms",
     ],
-    link: "https://maze-ai.netlify.app/",
+    link: "https://maze-ai-web.vercel.app/",
   },
   {
     start: "October 2022",
