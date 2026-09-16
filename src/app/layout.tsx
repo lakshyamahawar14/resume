@@ -7,13 +7,13 @@ import { ThemeProvider } from "@/components/theme-provider";
 const geist = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
-  display: "swap",
+  display: "block",
 });
 
 const lora = Lora({
   subsets: ["latin"],
   variable: "--font-editorial",
-  display: "swap",
+  display: "block",
 });
 
 export const metadata: Metadata = {
