@@ -26,7 +26,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log('layout.tsx rendered!');
   const cookieStore = await cookies();
   const themeCookie = cookieStore.get("theme")?.value;
   const isDark = themeCookie !== "light";
@@ -46,7 +45,8 @@ export default async function RootLayout({
           fetchPriority="high"
         />
       </head>
-      <body className="antialiased min-h-screen bg-slate-50 dark:bg-bg-secondary text-slate-900 dark:text-slate-100">
+      <body className="antialiased min-h-screen text-slate-900 dark:text-slate-100 relative">
+        <div className="bg-canvas" aria-hidden="true" />
         <ThemeProvider initialTheme={isDark ? "dark" : "light"}>
           {children}
         </ThemeProvider>

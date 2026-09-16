@@ -21,16 +21,17 @@ const getIcon = (iconName: string) => {
 };
 
 const Main = () => {
-  console.log('main.tsx rendered!');
   return (
     <main className="w-full flex flex-col items-center">
       <ScrollObserver />
 
       <section className="min-h-[100dvh] flex flex-col justify-center items-center lg:items-start gap-10 lg:gap-14 w-full max-w-5xl px-4 py-8 lg:p-16">
         <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-16 w-full">
-          <div className="w-56 h-56 min-w-56 min-h-56 rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 relative bg-slate-200 dark:bg-bg-card">
+          <div className="w-56 h-56 min-w-56 min-h-56 rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 relative">
             <img
               src="/images/profile.avif"
+              width={224}
+              height={224}
               fetchPriority="high"
               loading="eager"
               decoding="async"
