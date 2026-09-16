@@ -5,13 +5,6 @@ const nextConfig: NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
   },
-  images: {
-    formats: ["image/avif", "image/webp"],
-    qualities: [100],
-    imageSizes: [16, 32, 48, 56, 64, 96, 128, 192],
-    deviceSizes: [],
-    minimumCacheTTL: 31536000,
-  },
   async headers() {
     return [
       {
@@ -19,7 +12,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "public, no-cache",
           },
         ],
       },
@@ -28,23 +21,11 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
-          },
-        ],
-      },
-      {
-        source: "/_next/static/media/:path*",
-        headers: [
-          {
-            key: "Cache-Control",
-            value: "public, max-age=31536000, immutable",
+            value: "public, no-cache",
           },
         ],
       },
     ];
-  },
-  experimental: {
-    optimizePackageImports: ["lucide-react"],
   },
 };
 

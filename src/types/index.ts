@@ -18,7 +18,7 @@ export interface ProjectItem {
   start: string;
   end: string;
   period: number;
-  organization: string;
+  organization?: string;
   details: ItemDetail;
   tools?: string[];
   link?: string;

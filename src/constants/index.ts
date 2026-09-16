@@ -1,6 +1,5 @@
 import { EducationItem, ExperienceItem, ProjectItem, SkillGroup, SocialLinkItem } from "@/types";
 
-
 export const SOCIAL_LINKS: SocialLinkItem[] = [
   {
     icon: "Github",
@@ -131,42 +130,11 @@ export const EXPERIENCES: ExperienceItem[] = [
   },
 ];
 
-export const INTERNSHIPS: ExperienceItem[] = [
-  {
-    start: "May 2023",
-    end: "June 2023",
-    period: 1,
-    role: "Web Developer",
-    organization: "IIT Roorkee",
-    score: "7.348",
-    details: {
-      title: "Cognitive Therapy Chatbot Using Prompt Learning",
-      description: [
-        "Designed a fully functional web application containing a Chatbot trained to provide mental health-specific guidance using React, Firebase, Tailwind CSS, and the OpenAI API. Deployed the application to AWS EC2 Lambda instance with PM2 NPM package.",
-        "Created a recommendation engine using Python, which recommends articles and blogs by analyzing the user conversation.",
-        "Implemented community forum page with Post, Comment, Upvote, Downvote, Edit, and Delete functionalities from scratch.",
-        "Created a web scraper using Python to scrape the latest news, blogs, articles, and content within 1000ms.",
-      ],
-    },
-    tools: [
-      "React",
-      "Python",
-      "Node.js",
-      "Firebase",
-      "AWS EC2",
-      "Tailwind CSS",
-      "OpenAI API",
-      "PM2",
-    ],
-  },
-];
-
 export const PROJECTS: ProjectItem[] = [
   {
     start: "Aug 2026",
     end: "Sep 2026",
     period: 1,
-    organization: "Self Project",
     details: {
       title: "ChessRev - Free Chess.com games review",
       description: [
@@ -183,7 +151,6 @@ export const PROJECTS: ProjectItem[] = [
     start: "January 2026",
     end: "February 2026",
     period: 2,
-    organization: "Self Project",
     details: {
       title: "VLR Duel Game",
       description: [
@@ -205,7 +172,6 @@ export const PROJECTS: ProjectItem[] = [
     start: "May 2023",
     end: "June 2023",
     period: 1,
-    organization: "IIT Roorkee",
     details: {
       title: "Cognitive Therapy Chatbot",
       description: [
@@ -229,7 +195,6 @@ export const PROJECTS: ProjectItem[] = [
     start: "January 2023",
     end: "April 2023",
     period: 4,
-    organization: "IIT Roorkee",
     details: {
       title: "Dynamic Maze Generation Game",
       description: [
@@ -254,7 +219,6 @@ export const PROJECTS: ProjectItem[] = [
     start: "October 2022",
     end: "November 2022",
     period: 1,
-    organization: "IIT Roorkee",
     details: {
       title: "Clustering Queries For Enhanced Customer Support",
       description: [

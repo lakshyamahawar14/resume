@@ -1,14 +1,19 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Geist, Lora } from "next/font/google";
 import { cookies } from "next/headers";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const montserrat = Montserrat({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "block",
-  preload: true,
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const lora = Lora({
+  subsets: ["latin"],
+  variable: "--font-editorial",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -30,8 +35,17 @@ export default async function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${montserrat.variable} ${isDark ? "dark" : ""}`}
+      className={`${geist.variable} ${lora.variable} ${isDark ? "dark" : ""}`}
     >
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/profile.avif"
+          type="image/avif"
+          fetchPriority="high"
+        />
+      </head>
       <body className="antialiased min-h-screen bg-slate-50 dark:bg-bg-secondary text-slate-900 dark:text-slate-100">
         <ThemeProvider initialTheme={isDark ? "dark" : "light"}>
           {children}

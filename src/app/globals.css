@@ -5,7 +5,8 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --font-editorial: var(--font-editorial), Georgia, serif;
   --breakpoint-lg: 1024px;
 
   --color-bg-primary: #191f2c;
@@ -15,15 +16,20 @@
   
   --color-accent-primary: #00e5ff;
   --color-accent-hover: #00cce6;
+  --color-accent-subtle: #00b4cc;
 
-  --text-title: 1.25rem;
-  --text-title--line-height: 1.75rem;
+  --text-name: 2.25rem;
+  --text-name--line-height: 2.75rem;
+  --text-title: 1.75rem;
+  --text-title--line-height: 2.25rem;
+  --text-item-title: 1.25rem;
+  --text-item-title--line-height: 1.75rem;
   --text-subheading: 1rem;
   --text-subheading--line-height: 1.5rem;
-  --text-body: 0.875rem;
-  --text-body--line-height: 1.25rem;
-  --text-caption: 0.75rem;
-  --text-caption--line-height: 1rem;
+  --text-body: 1rem;
+  --text-body--line-height: 1.625rem;
+  --text-caption: 0.8125rem;
+  --text-caption--line-height: 1.125rem;
 }
 
 @layer base {
@@ -32,10 +38,18 @@
     font-family: var(--font-sans);
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans);
+  }
+
+  p {
+    font-family: var(--font-editorial);
+  }
+
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeSpeed;
+    text-rendering: optimizeLegibility;
   }
 
   html,
@@ -46,16 +60,40 @@
 
   body {
     background-color: #f8fafc;
+    background-image: radial-gradient(at 10% 10%, rgba(226, 232, 240, 0.6) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(203, 213, 225, 0.4) 0px, transparent 50%);
+    background-attachment: fixed;
     color: #0f172a;
-    overflow-x: hidden;
-    font-family: var(--font-sans);
+    overflow-x: clip;
     user-select: none;
   }
 
   :is(.dark body) {
-    background-color: #0b0f17;
+    background-color: #080b11;
+    background-image: radial-gradient(at 20% 15%, rgba(18, 22, 32, 0.9) 0px, transparent 60%),
+      radial-gradient(at 80% 85%, rgba(0, 0, 0, 0.95) 0px, transparent 60%);
+    background-attachment: fixed;
     color: #f8fafc;
   }
+}
+
+.font-sans {
+  font-family: var(--font-sans);
+}
+
+.font-editorial {
+  font-family: var(--font-editorial);
+}
+
+.scroll-section {
+  opacity: 0;
+  transform: translate3d(0, 1rem, 0);
+}
+
+.scroll-section.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
 }
 
 .content-auto {
