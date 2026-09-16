@@ -3,8 +3,6 @@
 import { useEffect } from "react";
 
 export default function ScrollObserver() {
-  console.log('scroll-observer.tsx called');
-
   useEffect(() => {
     const sections = document.getElementsByClassName("scroll-section");
     if (!sections.length) return;
@@ -20,8 +18,8 @@ export default function ScrollObserver() {
         }
       },
       {
-        rootMargin: "50px 0px",
-        threshold: 0.01,
+        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.15,
       }
     );
 

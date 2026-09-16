@@ -135,6 +135,7 @@ export const PROJECTS: ProjectItem[] = [
     start: "Aug 2026",
     end: "Sep 2026",
     period: 1,
+    imageSrc: "/images/chessrevss.avif",
     details: {
       title: "ChessRev - Free Chess.com games review",
       description: [
@@ -195,6 +196,7 @@ export const PROJECTS: ProjectItem[] = [
     start: "January 2023",
     end: "April 2023",
     period: 4,
+    imageSrc: "/images/mazeaiwebss.avif",
     details: {
       title: "Dynamic Maze Generation Game",
       description: [
