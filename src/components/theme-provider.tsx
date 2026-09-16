@@ -6,12 +6,12 @@ type Theme = "light" | "dark";
 
 interface ThemeContextType {
   resolvedTheme: Theme;
-  setTheme: (theme: Theme) => void;
+  toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextType>({
   resolvedTheme: "dark",
-  setTheme: () => {},
+  toggleTheme: () => {},
 });
 
 export const useTheme = () => useContext(ThemeContext);
@@ -26,18 +26,21 @@ export function ThemeProvider({
   console.log('theme-provider.tsx rendered!');
   const [theme, setThemeState] = useState<Theme>(initialTheme);
 
-  const setTheme = useCallback((newTheme: Theme) => {
-    setThemeState(newTheme);
-    document.cookie = `theme=${newTheme}; path=/; max-age=31536000; SameSite=Lax`;
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  const toggleTheme = useCallback(() => {
+    setThemeState((prev) => {
+      const next = prev === "dark" ? "light" : "dark";
+      document.cookie = `theme=${next}; path=/; max-age=31536000; SameSite=Lax`;
+      document.documentElement.classList.toggle("dark", next === "dark");
+      return next;
+    });
   }, []);
 
   const value = useMemo(
     () => ({
       resolvedTheme: theme,
-      setTheme,
+      toggleTheme,
     }),
-    [theme, setTheme]
+    [theme, toggleTheme]
   );
 
   return (

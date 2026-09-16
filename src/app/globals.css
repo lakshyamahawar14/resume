@@ -33,9 +33,10 @@
 }
 
 @layer base {
-  * {
+  *,
+  ::before,
+  ::after {
     box-sizing: border-box;
-    font-family: var(--font-sans);
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -59,6 +60,7 @@
   }
 
   body {
+    font-family: var(--font-sans);
     background-color: #f8fafc;
     color: #0f172a;
     overflow-x: clip;
@@ -76,6 +78,7 @@
   inset: 0;
   z-index: -10;
   pointer-events: none;
+  transform: translateZ(0);
   background-image: 
     radial-gradient(circle at 15% 15%, rgba(0, 229, 255, 0.18) 0%, transparent 45%),
     radial-gradient(circle at 85% 75%, rgba(0, 229, 255, 0.12) 0%, transparent 40%);

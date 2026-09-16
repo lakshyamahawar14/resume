@@ -17,8 +17,8 @@ const lora = Lora({
 });
 
 export const metadata: Metadata = {
-  title: "Lakshya Mahawar | Portfolio",
-  description: "Software Engineer Portfolio",
+  title: "Lakshya Mahawar",
+  description: "Lakshya Mahawar's portfolio.",
 };
 
 export default async function RootLayout({

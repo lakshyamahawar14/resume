@@ -1,16 +1,12 @@
 "use client";
 
-import { memo, useCallback } from "react";
+import { memo } from "react";
 import { useTheme } from "./theme-provider";
 import { SunIcon, MoonIcon } from "./icons";
 
 const DarkMode = () => {
   console.log('darkmode.tsx rendered!');
-  const { resolvedTheme, setTheme } = useTheme();
-
-  const toggleTheme = useCallback(() => {
-    setTheme(resolvedTheme === "dark" ? "light" : "dark");
-  }, [resolvedTheme, setTheme]);
+  const { toggleTheme } = useTheme();
 
   return (
     <div className="w-auto flex justify-center items-center">

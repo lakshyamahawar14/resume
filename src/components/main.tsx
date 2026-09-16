@@ -55,7 +55,7 @@ const Main = () => {
                 About
               </p>
               <p className="text-slate-600 dark:text-slate-300 text-body leading-relaxed break-words font-editorial">
-                Fullstack Developer with over 2 years of experience developing enterprise-grade Fiori applications with OData, Node.js, and Python backend services.
+                I am a Fullstack Developer with over 2 years of experience developing enterprise-grade Fiori applications with OData, Node.js, and Python backend services.
               </p>
             </div>
 
@@ -85,7 +85,7 @@ const Main = () => {
             </div>
 
             <div className="flex items-center justify-between w-full pt-6 border-t border-slate-200 dark:border-border-primary mt-2">
-              <ul className="flex items-center gap-5">
+              <ul className="flex items-center gap-2">
                 {SOCIAL_LINKS.filter((link: SocialLinkItem) => link.icon === "Github" || link.icon === "Linkedin").map((link: SocialLinkItem, idx: number) => (
                   <li key={idx} className="list-none shrink-0">
                     <Link
@@ -139,7 +139,7 @@ const Main = () => {
             </div>
 
             <p className="text-slate-600 dark:text-slate-300 text-body leading-relaxed font-editorial max-w-md">
-              Download the official résumé document in PDF format containing complete educational background, technical skill sets, and professional experience details.
+              Download my résumé containing complete educational background, technical skill sets, and professional experience details.
             </p>
 
             <a
