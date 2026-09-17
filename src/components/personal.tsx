@@ -1,5 +1,6 @@
 import { memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import DarkMode from "./darkmode";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { PERSONAL_DETAILS, SOCIAL_LINKS } from "@/constants";
@@ -26,15 +27,14 @@ const Personal = () => {
           className="w-full max-w-4xl mx-auto flex flex-col items-center gap-8 lg:gap-10"
         >
           <div className="w-48 h-48 min-w-48 min-h-48 lg:w-56 lg:h-56 lg:min-w-56 lg:min-h-56 rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 relative">
-            <img
+            <Image
               src={person.image}
-              width={224}
-              height={224}
-              fetchPriority="high"
-              loading="eager"
-              decoding="async"
               alt={`${person.name} profile photo`}
-              className="rounded-full object-cover object-center w-full h-full block"
+              fill
+              priority
+              quality={75}
+              sizes="(min-width: 1024px) 224px, 192px"
+              className="rounded-full object-cover object-center block"
             />
           </div>
 

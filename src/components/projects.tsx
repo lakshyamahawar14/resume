@@ -1,5 +1,6 @@
 import { memo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { PROJECTS } from "@/constants";
 import { ProjectItem } from "@/types";
 import { ExternalLinkIcon } from "./icons";
@@ -31,11 +32,14 @@ const Projects = () => {
             >
               {project.image && (
                 <div className="w-full lg:w-1/2 flex items-start justify-center overflow-hidden shrink-0">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    width={1200}
+                    height={675}
                     loading="lazy"
-                    decoding="async"
+                    quality={75}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
                     className="w-full h-auto max-h-[50vh] lg:max-h-[550px] object-contain object-top block"
                   />
                 </div>

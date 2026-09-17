@@ -37,15 +37,6 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${geist.variable} ${lora.variable} ${isDark ? "dark" : ""}`}
     >
-      <head>
-        <link
-          rel="preload"
-          as="image"
-          href="/images/profile.avif"
-          type="image/avif"
-          fetchPriority="high"
-        />
-      </head>
       <body className="antialiased min-h-screen text-slate-900 dark:text-slate-100 relative">
         <div className="bg-canvas" aria-hidden="true" />
         <ThemeProvider initialTheme={isDark ? "dark" : "light"}>
