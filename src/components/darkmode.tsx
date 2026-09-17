@@ -14,10 +14,10 @@ const DarkMode = () => {
         type="button"
         onClick={toggleTheme}
         aria-label="Toggle dark mode"
-        className="h-7 w-12 lg:h-8 lg:w-16 shrink-0 flex justify-center items-center rounded-full dark:text-slate-300 text-slate-600 dark:hover:text-accent-primary hover:text-accent-primary bg-slate-100 dark:bg-bg-card shadow-sm cursor-pointer"
+        className="h-9 w-14 lg:h-10 lg:w-18 shrink-0 flex justify-center items-center rounded-full text-slate-600 dark:text-slate-300 hover:text-accent-primary dark:hover:text-accent-primary bg-slate-100 dark:bg-bg-card shadow-sm cursor-pointer"
       >
-        <SunIcon className="w-3.5 h-3.5 lg:w-4 lg:h-4 shrink-0 hidden dark:block" />
-        <MoonIcon className="w-3.5 h-3.5 lg:w-4 lg:h-4 shrink-0 block dark:hidden" />
+        <SunIcon className="w-5 h-5 lg:w-6 lg:h-6 shrink-0 hidden dark:block" />
+        <MoonIcon className="w-5 h-5 lg:w-6 lg:h-6 shrink-0 block dark:hidden" />
       </button>
     </div>
   );

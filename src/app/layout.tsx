@@ -26,6 +26,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('layout.tsx rendered!');
   const cookieStore = await cookies();
   const themeCookie = cookieStore.get("theme")?.value;
   const isDark = themeCookie !== "light";

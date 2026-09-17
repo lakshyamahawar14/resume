@@ -1,6 +1,33 @@
-export interface ItemDetail {
+export interface SocialLinkItem {
+  name: string;
+  icon: string;
+  link: string;
+}
+
+export interface PersonalItem {
+  name: string;
+  role: string;
+  organization: string;
+  about: string;
+  email: string;
+  phone: string;
+  image: string;
+}
+
+export interface InterestItem {
+  name: string;
+}
+
+export interface EducationItem {
+  year: number;
   title: string;
-  description: string[];
+  subtitle: string;
+  score: string;
+}
+
+export interface SkillCategoryItem {
+  title: string;
+  skills: string[];
 }
 
 export interface ExperienceItem {
@@ -9,36 +36,18 @@ export interface ExperienceItem {
   period: number;
   role: string;
   organization: string;
-  score?: string;
-  details: ItemDetail;
-  tools?: string[];
+  title: string;
+  description: string[];
+  skills: string[];
 }
 
 export interface ProjectItem {
   start: string;
   end: string;
   period: number;
-  organization?: string;
-  details: ItemDetail;
-  tools?: string[];
+  title: string;
+  description: string[];
+  skills: string[];
+  image?: string;
   link?: string;
-  imageSrc?: string;
-}
-
-export interface EducationItem {
-  year: number;
-  examination: string;
-  institution: string;
-  score: string;
-}
-
-export interface SkillGroup {
-  name: string;
-  values: string[];
-}
-
-export interface SocialLinkItem {
-  icon: string;
-  name: string;
-  route: string;
 }

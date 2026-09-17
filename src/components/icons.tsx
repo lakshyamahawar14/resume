@@ -1,4 +1,5 @@
 import { memo } from "react";
+console.log('icons.tsx rendered!');
 
 export const GithubIcon = memo(({ className }: { className?: string }) => (
   <svg
@@ -6,7 +7,7 @@ export const GithubIcon = memo(({ className }: { className?: string }) => (
     width="24"
     height="24"
     fill="currentColor"
-    className={`w-5 h-5 block shrink-0 aspect-square ${className || ""}`}
+    className={`w-7 h-7 block shrink-0 aspect-square ${className || ""}`}
   >
     <path
       fillRule="evenodd"
@@ -23,14 +24,10 @@ export const LinkedinIcon = memo(({ className }: { className?: string }) => (
     viewBox="0 0 24 24"
     width="24"
     height="24"
-    fill="none"
-    className={`w-5 h-5 block shrink-0 aspect-square ${className || ""}`}
+    fill="currentColor"
+    className={`w-7 h-7 block shrink-0 aspect-square ${className || ""}`}
   >
-    <rect width="24" height="24" rx="4" fill="#0A66C2" />
-    <path
-      d="M7.09 5.5a1.59 1.59 0 11-3.18 0 1.59 1.59 0 013.18 0zM3.91 8.5h3.18V19H3.91V8.5zm5.18 0h3.05v1.43h.04c.42-.8 1.46-1.64 3.01-1.64 3.22 0 3.81 2.12 3.81 4.88V19h-3.18v-5.14c0-1.23-.02-2.8-1.71-2.8-1.71 0-1.97 1.33-1.97 2.71V19H9.09V8.5z"
-      fill="#FFFFFF"
-    />
+    <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 1 0 0-3.3 1.66 1.66 0 0 0 0 3.3m1.4 9.74v-8.37H5.06v8.37h2.8z" />
   </svg>
 ));
 
@@ -88,7 +85,7 @@ export const SunIcon = memo(({ className }: { className?: string }) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-4 h-4 block shrink-0 aspect-square ${className || ""}`}
+    className={`w-5 h-5 lg:w-6 lg:h-6 block shrink-0 aspect-square ${className || ""}`}
   >
     <circle cx="12" cy="12" r="4" />
     <path d="M12 2v2" />
@@ -114,7 +111,7 @@ export const MoonIcon = memo(({ className }: { className?: string }) => (
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-4 h-4 block shrink-0 aspect-square ${className || ""}`}
+    className={`w-5 h-5 lg:w-6 lg:h-6 block shrink-0 aspect-square ${className || ""}`}
   >
     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
   </svg>

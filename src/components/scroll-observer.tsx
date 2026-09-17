@@ -3,47 +3,42 @@
 import { useEffect } from "react";
 
 const ScrollObserver = () => {
+  console.log('scroll-observer.tsx rendered!');
   useEffect(() => {
-    let observer: IntersectionObserver | null = null;
+    const sections = document.querySelectorAll(".scroll-section");
+    const count = sections.length;
+    if (!count) return;
 
-    const setupObserver = () => {
-      const sections = document.querySelectorAll(".scroll-section");
-      if (!sections.length) return;
-
-      observer = new IntersectionObserver(
-        (entries) => {
-          for (let i = 0; i < entries.length; i++) {
-            const entry = entries[i];
-            if (entry.isIntersecting) {
-              entry.target.classList.add("is-visible");
-              observer?.unobserve(entry.target);
-            }
-          }
-        },
-        {
-          rootMargin: "0px 0px -10% 0px",
-          threshold: 0.15,
-        }
-      );
-
-      for (let i = 0; i < sections.length; i++) {
-        observer.observe(sections[i]);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      for (let i = 0; i < count; i++) {
+        sections[i].classList.add("is-visible");
       }
-    };
-
-    if ("requestIdleCallback" in window) {
-      const idleId = window.requestIdleCallback(setupObserver, { timeout: 1000 });
-      return () => {
-        window.cancelIdleCallback(idleId);
-        observer?.disconnect();
-      };
-    } else {
-      const timer = setTimeout(setupObserver, 50);
-      return () => {
-        clearTimeout(timer);
-        observer?.disconnect();
-      };
+      return;
     }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i];
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      {
+        rootMargin: "0px 0px -10% 0px",
+        threshold: 0.15,
+      }
+    );
+
+    for (let i = 0; i < count; i++) {
+      observer.observe(sections[i]);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
 
   return null;
