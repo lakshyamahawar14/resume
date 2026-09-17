@@ -34,7 +34,9 @@ const WorkExperience = () => {
 
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <h4>Key Highlights</h4>
+                <h4 className="font-sans font-bold text-caption tracking-wider text-accent-primary">
+                  Key Highlights
+                </h4>
                 <ul className="flex flex-col gap-2">
                   {exp.description.map((step: string, idx: number) => (
                     <li key={idx}>
@@ -46,7 +48,9 @@ const WorkExperience = () => {
 
               {exp.skills.length > 0 && (
                 <div className="flex flex-col gap-2">
-                  <h4>Technologies</h4>
+                  <h4 className="font-sans font-bold text-caption tracking-wider text-accent-primary">
+                    Technologies
+                  </h4>
                   <ul className="flex flex-wrap gap-2.5">
                     {exp.skills.map((skill: string, idx: number) => (
                       <li key={idx}>

@@ -56,7 +56,9 @@ const Projects = () => {
 
                 <div className="flex flex-col gap-4">
                   <div className="flex flex-col gap-2">
-                    <h4>Description</h4>
+                    <h4 className="font-sans font-bold text-caption tracking-wider text-accent-primary">
+                      Description
+                    </h4>
                     <ul className="flex flex-col gap-2">
                       {project.description.map((step: string, idx: number) => (
                         <li key={idx}>
@@ -68,7 +70,9 @@ const Projects = () => {
 
                   {project.skills.length > 0 && (
                     <div className="flex flex-col gap-2">
-                      <h4>Stack & Tools</h4>
+                      <h4 className="font-sans font-bold text-caption tracking-wider text-accent-primary">
+                        Stack & Tools
+                      </h4>
                       <ul className="flex flex-wrap gap-2.5">
                         {project.skills.map((skill: string, idx: number) => (
                           <li key={idx}>

@@ -50,7 +50,7 @@ const Personal = () => {
             </header>
 
             <article className="flex flex-col gap-2.5 max-w-2xl">
-              <span className="font-sans font-bold text-caption tracking-wider text-accent-subtle block">
+              <span className="font-sans font-bold text-caption tracking-wider text-accent-primary block">
                 About
               </span>
               <p>{person.about}</p>
@@ -58,7 +58,7 @@ const Personal = () => {
 
             <address className="not-italic flex flex-col lg:flex-row gap-8 lg:gap-16 w-full justify-start">
               <div className="flex flex-col gap-1.5">
-                <span className="font-sans font-bold text-caption tracking-wider text-accent-subtle block">
+                <span className="font-sans font-bold text-caption tracking-wider text-accent-primary block">
                   Email
                 </span>
                 <p className="font-sans font-medium text-slate-800 dark:text-slate-200">
@@ -72,7 +72,7 @@ const Personal = () => {
               </div>
 
               <div className="flex flex-col gap-1.5">
-                <span className="font-sans font-bold text-caption tracking-wider text-accent-subtle block">
+                <span className="font-sans font-bold text-caption tracking-wider text-accent-primary block">
                   Phone
                 </span>
                 <p className="font-sans font-medium text-slate-800 dark:text-slate-200">
@@ -82,7 +82,7 @@ const Personal = () => {
             </address>
 
             <footer className="flex items-center justify-between w-full">
-              <ul className="flex items-center gap-1">
+              <ul className="flex items-center gap-x-1">
                 {SOCIAL_LINKS.filter(
                   (link: SocialLinkItem) =>
                     link.icon === "Github" || link.icon === "Linkedin"

@@ -16,7 +16,6 @@
 
   --color-accent-primary: #00e5ff;
   --color-accent-hover: #00cce6;
-  --color-accent-subtle: #00b4cc;
 
   --text-name: 2.25rem;
   --text-name--line-height: 2.75rem;
@@ -104,8 +103,8 @@
   }
 
   h2 {
-    font-size: var(--text-title);
-    line-height: var(--text-title--line-height);
+    font-size: var(--text-name);
+    line-height: var(--text-name--line-height);
     font-weight: 800;
     letter-spacing: -0.025em;
     overflow-wrap: break-word;
@@ -118,6 +117,15 @@
   }
 
   h3 {
+    font-size: var(--text-title);
+    line-height: var(--text-title--line-height);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    overflow-wrap: break-word;
+    color: var(--color-accent-primary);
+  }
+
+  h4 {
     font-size: var(--text-item-title);
     line-height: var(--text-item-title--line-height);
     font-weight: 700;
@@ -126,12 +134,12 @@
     color: var(--color-accent-primary);
   }
 
-  h4 {
+  h5 {
     font-size: var(--text-caption);
     line-height: var(--text-caption--line-height);
     font-weight: 700;
     letter-spacing: 0.05em;
-    color: var(--color-accent-subtle);
+    color: var(--color-accent-primary);
   }
 
   p {

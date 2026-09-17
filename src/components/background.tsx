@@ -28,7 +28,7 @@ const Background = () => {
             {EDUCATION.map((edu: EducationItem, index: number) => (
               <div key={index} className="flex flex-col justify-between py-2">
                 <div className="flex flex-col gap-1.5">
-                  <h3>{edu.title}</h3>
+                  <h4>{edu.title}</h4>
                   <p className="font-sans font-semibold text-slate-800 dark:text-slate-200">
                     {edu.subtitle}
                   </p>
