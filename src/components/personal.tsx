@@ -31,7 +31,8 @@ const Personal = () => {
               src={person.image}
               alt={`${person.name} profile photo`}
               fill
-              priority
+              priority={true}
+              fetchPriority="high"
               quality={75}
               sizes="(min-width: 1024px) 224px, 192px"
               className="rounded-full object-cover object-center block"
