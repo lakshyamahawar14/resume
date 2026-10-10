@@ -1,7 +1,6 @@
 import { memo } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import DarkMode from "./darkmode";
 import { GithubIcon, LinkedinIcon } from "./icons";
 import { PERSONAL_DETAILS, SOCIAL_LINKS } from "@/constants";
 import { PersonalItem, SocialLinkItem } from "@/types";
@@ -20,11 +19,11 @@ const getIcon = (iconName: string) => {
 const Personal = () => {
   console.log('personal.tsx rendered!');
   return (
-    <section className="min-h-[100dvh] flex flex-col justify-center items-center">
+    <section className="h-[100dvh] max-h-[100dvh] flex flex-col justify-center items-center py-4 lg:py-6 overflow-hidden">
       {PERSONAL_DETAILS.map((person: PersonalItem, index: number) => (
         <div
           key={index}
-          className="w-full max-w-4xl mx-auto flex flex-col items-center gap-8 lg:gap-10"
+          className="w-full max-w-4xl mx-auto flex flex-col items-center gap-5 lg:gap-7"
         >
           <div className="w-48 h-48 min-w-48 min-h-48 lg:w-56 lg:h-56 lg:min-w-56 lg:min-h-56 rounded-full ring-2 ring-accent-primary overflow-hidden shrink-0 relative">
             <Image
@@ -39,44 +38,44 @@ const Personal = () => {
             />
           </div>
 
-          <div className="w-full max-w-2xl flex flex-col items-start text-left gap-8">
-            <header className="flex flex-col gap-2">
+          <div className="w-full max-w-2xl flex flex-col items-start text-left gap-5 lg:gap-6">
+            <header className="flex flex-col gap-1">
               <h1>{person.name}</h1>
-              <p className="font-sans font-medium text-subheading text-slate-600 dark:text-slate-400">
+              <p className="font-sans font-medium text-subheading">
                 {person.role} @{" "}
-                <span className="text-accent-primary font-semibold">
+                <span className="font-semibold">
                   {person.organization}
                 </span>
               </p>
             </header>
 
-            <article className="flex flex-col gap-2.5 max-w-2xl">
-              <span className="font-sans font-bold text-caption tracking-wider text-accent-primary block">
+            <article className="flex flex-col gap-1.5 max-w-2xl">
+              <span className="font-sans font-bold text-caption tracking-wider block">
                 About
               </span>
               <p>{person.about}</p>
             </article>
 
-            <address className="not-italic flex flex-col lg:flex-row gap-8 lg:gap-16 w-full justify-start">
-              <div className="flex flex-col gap-1.5">
-                <span className="font-sans font-bold text-caption tracking-wider text-accent-primary block">
+            <address className="not-italic flex flex-col sm:flex-row gap-4 sm:gap-8 lg:gap-12 w-full justify-start">
+              <div className="flex flex-col gap-1">
+                <span className="font-sans font-bold text-caption tracking-wider block">
                   Email
                 </span>
-                <p className="font-sans font-medium text-slate-800 dark:text-slate-200">
+                <p className="font-sans font-medium break-all">
                   <Link
                     href={`mailto:${person.email}`}
-                    className="hover:text-accent-primary underline-offset-2 hover:underline"
+                    className="underline-offset-2 hover:underline"
                   >
                     {person.email}
                   </Link>
                 </p>
               </div>
 
-              <div className="flex flex-col gap-1.5">
-                <span className="font-sans font-bold text-caption tracking-wider text-accent-primary block">
+              <div className="flex flex-col gap-1">
+                <span className="font-sans font-bold text-caption tracking-wider block">
                   Phone
                 </span>
-                <p className="font-sans font-medium text-slate-800 dark:text-slate-200">
+                <p className="font-sans font-medium">
                   {person.phone}
                 </p>
               </div>
@@ -94,14 +93,13 @@ const Personal = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={link.name}
-                      className="w-11 h-11 flex justify-center items-center rounded-lg text-slate-600 dark:text-slate-300 hover:text-accent-primary dark:hover:text-accent-primary shrink-0 aspect-square"
+                      className="w-10 h-10 flex justify-center items-center shrink-0 aspect-square"
                     >
                       {getIcon(link.icon)}
                     </Link>
                   </li>
                 ))}
               </ul>
-              <DarkMode />
             </footer>
           </div>
         </div>

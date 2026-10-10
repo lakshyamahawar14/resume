@@ -9,48 +9,49 @@ const Projects = () => {
   console.log('projects.tsx rendered!');
   return (
     <section className="items-center">
-      <header className="scroll-section w-full text-center">
+      <header className="w-full text-center mb-6">
         <h2>Projects</h2>
       </header>
 
-      <div className="w-full flex flex-col gap-8 lg:gap-12">
+      <div className="w-full flex flex-col gap-8 lg:gap-10">
         {PROJECTS.map((project: ProjectItem, index: number) => (
           <article
             key={index}
-            className={`scroll-section w-full ${
+            className={`w-full ${
               project.image
-                ? "min-h-[100dvh] flex items-center justify-center py-4 lg:py-8"
-                : "max-w-4xl mx-auto flex flex-col gap-4 py-4"
+                ? "min-h-[auto] lg:min-h-[75vh] flex items-center justify-center p-2 sm:p-4"
+                : "max-w-4xl mx-auto flex flex-col gap-4 py-2"
             }`}
           >
             <div
               className={`w-full ${
                 project.image
-                  ? "flex flex-col lg:flex-row items-start justify-between gap-7 lg:gap-12"
+                  ? "flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10"
                   : "flex flex-col gap-4"
               }`}
             >
               {project.image && (
-                <div className="w-full lg:w-1/2 flex items-start justify-center overflow-hidden shrink-0">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    width={1200}
-                    height={675}
-                    loading="lazy"
-                    quality={75}
-                    sizes="(min-width: 1024px) 50vw, 100vw"
-                    className="w-full h-auto max-h-[50vh] lg:max-h-[550px] object-contain object-top block"
-                  />
+                <div className="w-full lg:w-1/2 flex items-center justify-center overflow-hidden shrink-0 p-2">
+                  <div className="relative w-full max-w-[460px] aspect-[16/10] sm:aspect-[16/9] lg:h-[60vh]">
+                    <Image
+                      src={project.image}
+                      alt={project.title}
+                      fill
+                      loading="lazy"
+                      quality={75}
+                      sizes="(min-width: 1024px) 460px, 95vw"
+                      className="object-contain object-center block"
+                    />
+                  </div>
                 </div>
               )}
 
               <div
-                className={`w-full flex flex-col gap-5 lg:gap-6 ${
+                className={`w-full flex flex-col gap-4 lg:gap-5 ${
                   project.image ? "lg:w-1/2" : ""
                 }`}
               >
-                <header className="flex flex-col lg:flex-row justify-between items-start gap-2">
+                <header className="flex flex-col sm:flex-row justify-between items-start gap-2">
                   <h3>{project.title}</h3>
                   <time>
                     {project.start} - {project.end} ({project.period}{" "}
@@ -59,11 +60,11 @@ const Projects = () => {
                 </header>
 
                 <div className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-2">
-                    <h4 className="font-sans font-bold text-caption tracking-wider text-accent-primary">
+                  <div className="flex flex-col gap-1.5">
+                    <h4 className="font-sans font-bold text-caption tracking-wider">
                       Description
                     </h4>
-                    <ul className="flex flex-col gap-2">
+                    <ul className="flex flex-col gap-1.5">
                       {project.description.map((step: string, idx: number) => (
                         <li key={idx}>
                           <p>• {step}</p>
@@ -73,11 +74,11 @@ const Projects = () => {
                   </div>
 
                   {project.skills.length > 0 && (
-                    <div className="flex flex-col gap-2">
-                      <h4 className="font-sans font-bold text-caption tracking-wider text-accent-primary">
+                    <div className="flex flex-col gap-1.5">
+                      <h4 className="font-sans font-bold text-caption tracking-wider">
                         Stack & Tools
                       </h4>
-                      <ul className="flex flex-wrap gap-2.5">
+                      <ul className="flex flex-wrap gap-2">
                         {project.skills.map((skill: string, idx: number) => (
                           <li key={idx}>
                             <span className="badge">{skill}</span>

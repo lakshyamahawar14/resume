@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Lora } from "next/font/google";
-import { cookies } from "next/headers";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -27,21 +25,14 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   console.log('layout.tsx rendered!');
-  const cookieStore = await cookies();
-  const themeCookie = cookieStore.get("theme")?.value;
-  const isDark = themeCookie !== "light";
-
   return (
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geist.variable} ${lora.variable} ${isDark ? "dark" : ""}`}
+      className={`${geist.variable} ${lora.variable}`}
     >
-      <body className="antialiased min-h-screen text-slate-900 dark:text-slate-100 relative">
-        <div className="bg-canvas" aria-hidden="true" />
-        <ThemeProvider initialTheme={isDark ? "dark" : "light"}>
-          {children}
-        </ThemeProvider>
+      <body className="antialiased min-h-screen text-slate-900 relative">
+        {children}
       </body>
     </html>
   );
