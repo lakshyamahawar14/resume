@@ -1,13 +1,15 @@
-import { memo } from "react";
-console.log('icons.tsx rendered!');
+import { memo, SVGProps } from "react";
 
-export const GithubIcon = memo(({ className }: { className?: string }) => (
+export type IconProps = SVGProps<SVGSVGElement>;
+
+export const GithubIcon = memo(({ className, width = 24, height = 24, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
-    width="24"
-    height="24"
+    width={width}
+    height={height}
     fill="currentColor"
-    className={`w-7 h-7 block shrink-0 aspect-square ${className || ""}`}
+    className={className}
+    {...props}
   >
     <path
       fillRule="evenodd"
@@ -19,13 +21,14 @@ export const GithubIcon = memo(({ className }: { className?: string }) => (
 
 GithubIcon.displayName = "GithubIcon";
 
-export const LinkedinIcon = memo(({ className }: { className?: string }) => (
+export const LinkedinIcon = memo(({ className, width = 24, height = 24, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
-    width="24"
-    height="24"
+    width={width}
+    height={height}
     fill="currentColor"
-    className={`w-7 h-7 block shrink-0 aspect-square ${className || ""}`}
+    className={className}
+    {...props}
   >
     <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.65 1.65 0 1 0 0-3.3 1.66 1.66 0 0 0 0 3.3m1.4 9.74v-8.37H5.06v8.37h2.8z" />
   </svg>
@@ -33,17 +36,18 @@ export const LinkedinIcon = memo(({ className }: { className?: string }) => (
 
 LinkedinIcon.displayName = "LinkedinIcon";
 
-export const DownloadIcon = memo(({ className }: { className?: string }) => (
+export const DownloadIcon = memo(({ className, width = 24, height = 24, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
-    width="24"
-    height="24"
+    width={width}
+    height={height}
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-4 h-4 block shrink-0 aspect-square ${className || ""}`}
+    className={className}
+    {...props}
   >
     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
     <polyline points="7 10 12 15 17 10" />
@@ -53,17 +57,18 @@ export const DownloadIcon = memo(({ className }: { className?: string }) => (
 
 DownloadIcon.displayName = "DownloadIcon";
 
-export const FileTextIcon = memo(({ className }: { className?: string }) => (
+export const FileTextIcon = memo(({ className, width = 24, height = 24, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
-    width="24"
-    height="24"
+    width={width}
+    height={height}
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-6 h-6 block shrink-0 aspect-square ${className || ""}`}
+    className={className}
+    {...props}
   >
     <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z" />
     <path d="M14 2v4a2 2 0 0 0 2 2h4" />
@@ -75,17 +80,18 @@ export const FileTextIcon = memo(({ className }: { className?: string }) => (
 
 FileTextIcon.displayName = "FileTextIcon";
 
-export const SunIcon = memo(({ className }: { className?: string }) => (
+export const SunIcon = memo(({ className, width = 24, height = 24, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
-    width="24"
-    height="24"
+    width={width}
+    height={height}
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-5 h-5 lg:w-6 lg:h-6 block shrink-0 aspect-square ${className || ""}`}
+    className={className}
+    {...props}
   >
     <circle cx="12" cy="12" r="4" />
     <path d="M12 2v2" />
@@ -101,17 +107,18 @@ export const SunIcon = memo(({ className }: { className?: string }) => (
 
 SunIcon.displayName = "SunIcon";
 
-export const MoonIcon = memo(({ className }: { className?: string }) => (
+export const MoonIcon = memo(({ className, width = 24, height = 24, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
-    width="24"
-    height="24"
+    width={width}
+    height={height}
     fill="none"
     stroke="currentColor"
     strokeWidth="2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-5 h-5 lg:w-6 lg:h-6 block shrink-0 aspect-square ${className || ""}`}
+    className={className}
+    {...props}
   >
     <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
   </svg>
@@ -119,17 +126,18 @@ export const MoonIcon = memo(({ className }: { className?: string }) => (
 
 MoonIcon.displayName = "MoonIcon";
 
-export const ExternalLinkIcon = memo(({ className }: { className?: string }) => (
+export const ExternalLinkIcon = memo(({ className, width = 24, height = 24, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
-    width="24"
-    height="24"
+    width={width}
+    height={height}
     fill="none"
     stroke="currentColor"
     strokeWidth="2.2"
     strokeLinecap="round"
     strokeLinejoin="round"
-    className={`w-4 h-4 block shrink-0 aspect-square ${className || ""}`}
+    className={className}
+    {...props}
   >
     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
     <polyline points="15 3 21 3 21 9" />

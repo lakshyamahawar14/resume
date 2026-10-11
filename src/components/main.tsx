@@ -6,9 +6,8 @@ import Projects from "./projects";
 import Resume from "./resume";
 
 const Main = () => {
-  console.log('main.tsx rendered!');
   return (
-    <main className="w-full flex flex-col items-center gap-12 lg:gap-20">
+    <main>
       <Personal />
       <Background />
       <WorkExperience />
