@@ -1,32 +1,32 @@
+
 import { memo } from "react";
 import { INTERESTS, EDUCATION, SKILLS } from "@/constants";
 import { EducationItem, InterestItem, SkillCategoryItem } from "@/types";
-import { getRandomLayoutTransform } from "@/utils/font";
 
 const Background = () => {
   return (
     <section>
-      <header style={getRandomLayoutTransform(2, 8, -1.2, 1.2)}>
-        <h2>Background</h2>
+      <header>
+        <h2 className="text-center mt-3 py-3 font-bold bg-[moccasin] text-[teal]">Background</h2>
       </header>
 
-      <div style={getRandomLayoutTransform(2, 6, -0.6, 0.6)}>
-        <article style={getRandomLayoutTransform(2, 10, -0.9, 0.9)}>
-          <h3>Area of Interest</h3>
-          <ul style={getRandomLayoutTransform(2, 6, -0.6, 0.6)}>
+      <div className="flex flex-col gap-2">
+        <article className="bg-[navy] text-[white]">
+          <h3 className="font-semibold">Area of Interest</h3>
+          <ul className="grid grid-cols-2 gap-2">
             {INTERESTS.map((interest: InterestItem, index: number) => (
-              <li key={index}>
+              <li key={index} className="border border-[pink]">
                 <span>{interest.name}</span>
               </li>
             ))}
           </ul>
         </article>
 
-        <article style={getRandomLayoutTransform(2, 10, -0.8, 0.8)}>
-          <h3>Education</h3>
-          <div style={getRandomLayoutTransform(2, 6, -0.6, 0.6)}>
+        <article>
+          <h3 className="text-center font-bold mt-3 py-3 bg-[crimson]">Education</h3>
+          <div className="grid grid-cols-2 gap-2 bg-[purple] text-[white]">
             {EDUCATION.map((edu: EducationItem, index: number) => (
-              <div key={index} style={getRandomLayoutTransform(2, 8, -0.7, 0.7)}>
+              <div key={index}>
                 <div>
                   <h4>{edu.title}</h4>
                   <p>{edu.subtitle}</p>
@@ -43,13 +43,13 @@ const Background = () => {
           </div>
         </article>
 
-        <article style={getRandomLayoutTransform(2, 10, -0.8, 0.8)}>
-          <h3>Skills</h3>
-          <div style={getRandomLayoutTransform(2, 6, -0.6, 0.6)}>
+        <article>
+          <h3 className="text-center font-bold mt-3 py-3 bg-[beige]">Skills</h3>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,125px),1fr))] gap-2 bg-[orange]">
             {SKILLS.map((group: SkillCategoryItem, index: number) => (
-              <div key={index} style={getRandomLayoutTransform(2, 8, -0.7, 0.7)}>
+              <div key={index}>
                 <h4>{group.title}</h4>
-                <ul style={getRandomLayoutTransform(2, 4, -0.5, 0.5)}>
+                <ul>
                   {group.skills.map((skill: string, idx: number) => (
                     <li key={idx}>
                       <span>{skill}</span>

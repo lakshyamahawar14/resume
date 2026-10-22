@@ -4,21 +4,20 @@ import Image from "next/image";
 import { PROJECTS } from "@/constants";
 import { ProjectItem } from "@/types";
 import { ExternalLinkIcon } from "./icons";
-import { getRandomLayoutTransform } from "@/utils/font";
 
 const Projects = () => {
   return (
     <section>
-      <header style={getRandomLayoutTransform(2, 8, -1.2, 1.2)}>
-        <h2>Projects</h2>
+      <header>
+        <h2 className="text-center font-bold mt-3 py-3 bg-[dodgerblue] text-[aliceblue]">Projects</h2>
       </header>
 
-      <div style={getRandomLayoutTransform(2, 6, -0.6, 0.6)}>
+      <div>
         {PROJECTS.map((project: ProjectItem, index: number) => (
-          <article key={index} style={getRandomLayoutTransform(2, 10, -0.8, 0.8)}>
+          <article key={index} className="mb-2">
             <div>
               {project.image && (
-                <div style={getRandomLayoutTransform(1, 4, -0.5, 0.5)}>
+                <div className="border border-5 border-[lightskyblue]">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -31,19 +30,19 @@ const Projects = () => {
                 </div>
               )}
 
-              <div style={getRandomLayoutTransform(2, 8, -0.7, 0.7)}>
-                <header>
-                  <h3>{project.title}</h3>
-                  <time>
+              <div>
+                <header className="flex justify-between gap-2 bg-[firebrick] text-[cornsilk]">
+                  <h3 className="font-semibold">{project.title}</h3>
+                  <time className="text-end text-[khaki]">
                     {project.start} - {project.end} ({project.period}{" "}
                     {project.period === 1 ? "month" : "months"})
                   </time>
                 </header>
 
-                <div style={getRandomLayoutTransform(2, 6, -0.5, 0.5)}>
+                <div>
                   <div>
-                    <h4>Description</h4>
-                    <ul>
+                    <h4 className="font-semibold bg-[Gainsboro]">Description</h4>
+                    <ul className="bg-[honeydew] border-2 border-[goldenrod]">
                       {project.description.map((step: string, idx: number) => (
                         <li key={idx}>
                           <p>• {step}</p>
@@ -53,11 +52,11 @@ const Projects = () => {
                   </div>
 
                   {project.skills.length > 0 && (
-                    <div style={getRandomLayoutTransform(2, 4, -0.4, 0.4)}>
-                      <h4>Stack & Tools</h4>
-                      <ul>
+                    <div>
+                      <h4 className="font-semibold bg-[lightcoral]">Stack & Tools</h4>
+                      <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,125px),1fr))] gap-1">
                         {project.skills.map((skill: string, idx: number) => (
-                          <li key={idx}>
+                          <li key={idx} className="bg-[maroon] w-auto text-[white] rounded-sm pl-2 py-1">
                             <span>{skill}</span>
                           </li>
                         ))}
@@ -66,11 +65,12 @@ const Projects = () => {
                   )}
 
                   {project.link && (
-                    <footer>
+                    <footer className="flex justify-end">
                       <Link
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
+                        className="flex items-center gap-2 my-2 w-auto bg-[blue] text-[white] p-2"
                       >
                         <ExternalLinkIcon width={16} height={16} />
                         <span>Live →</span>

@@ -1,36 +1,34 @@
 import { memo } from "react";
 import { EXPERIENCES } from "@/constants";
 import { ExperienceItem } from "@/types";
-import { getRandomLayoutTransform } from "@/utils/font";
 
 const WorkExperience = () => {
   return (
     <section>
-      <header style={getRandomLayoutTransform(2, 8, -1.2, 1.2)}>
-        <h2>Work Experience</h2>
+      <header>
+        <h2 className="text-center mt-3 py-3 font-bold bg-[cyan]">Work Experience</h2>
       </header>
 
-      <div style={getRandomLayoutTransform(2, 6, -0.6, 0.6)}>
+      <div>
         {EXPERIENCES.map((exp: ExperienceItem, index: number) => (
-          <article key={index} style={getRandomLayoutTransform(2, 10, -0.9, 0.9)}>
-            <header>
-              <div>
+          <article key={index}>
+            <header className="flex flex-col bg-[darkgreen] text-[cornsilk]">
+              <div className="flex justify-between gap-3">
                 <h3>{exp.role}</h3>
                 <p>{exp.organization}</p>
-                <p>{exp.title}</p>
               </div>
-              <time>
+              <time className="text-end text-[khaki]">
                 {exp.start} - {exp.end} ({exp.period}{" "}
                 {exp.period === 1 ? "month" : "months"})
               </time>
             </header>
 
-            <div style={getRandomLayoutTransform(2, 6, -0.6, 0.6)}>
-              <div style={getRandomLayoutTransform(2, 4, -0.5, 0.5)}>
-                <h4>Key Highlights</h4>
+            <div>
+              <div>
+                <h4 className="font-semibold bg-[brown] text-[yellow] p-2">Key Highlights</h4>
                 <ul>
                   {exp.description.map((step: string, idx: number) => (
-                    <li key={idx}>
+                    <li key={idx} className="bg-[goldenrod] border-1 border-[ivory]">
                       <p>• {step}</p>
                     </li>
                   ))}
@@ -38,11 +36,11 @@ const WorkExperience = () => {
               </div>
 
               {exp.skills.length > 0 && (
-                <div style={getRandomLayoutTransform(2, 4, -0.5, 0.5)}>
-                  <h4>Technologies</h4>
-                  <ul>
+                <div>
+                  <h4 className="font-semibold bg-[lemonchiffon]">Technologies</h4>
+                  <ul className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,125px),1fr))] gap-1">
                     {exp.skills.map((skill: string, idx: number) => (
-                      <li key={idx}>
+                      <li key={idx} className="bg-[maroon] text-[white] rounded-sm pl-2 py-1">
                         <span>{skill}</span>
                       </li>
                     ))}

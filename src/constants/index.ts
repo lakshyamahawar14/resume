@@ -12,7 +12,7 @@ export const PERSONAL_DETAILS: PersonalItem[] = [
   {
     name: "Lakshya Mahawar",
     role: "Software Engineer",
-    organization: "V3iT",
+    organization: "V3iT Consulting Pvt. Ltd.",
     about:
       "I am an SAP Fiori Developer with over 2 years of experience in developing enterprise-grade Fiori applications, coupled with OData, Node.js, and Python-based backend development.",
     email: "lakshyamahawar14@gmail.com",

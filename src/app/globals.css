@@ -1,81 +1,13 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: var(--font-sans), system-ui, sans-serif;
-  --font-editorial: var(--font-editorial), Georgia, serif;
+* {
+  box-sizing: border-box;
 }
 
-.font-sans {
-  font-family: var(--font-sans);
-}
-
-.font-editorial {
-  font-family: var(--font-editorial);
-}
-
-section,
-article,
-header,
-footer,
-address,
-div,
-ul,
-li {
-  position: relative;
-}
-
-article,
-header,
-section {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-}
-
-h1 {
-  font-size: var(--fs-h1, 36px);
-  font-family: var(--font-h1, var(--font-sans));
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-h2 {
-  font-size: var(--fs-h2, 28px);
-  font-family: var(--font-h2, var(--font-sans));
-  font-weight: 700;
-  line-height: 1.35;
-}
-
-h3 {
-  font-size: var(--fs-h3, 22px);
-  font-family: var(--font-h3, var(--font-sans));
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-h4 {
-  font-size: var(--fs-h4, 18px);
-  font-family: var(--font-h4, var(--font-sans));
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-p,
-time,
-address,
-ul,
-li,
-a {
-  font-size: var(--fs-body, 15px);
-  font-family: var(--font-body, var(--font-sans));
-  line-height: 1.6;
-}
-
-small,
-caption,
-span.caption {
-  font-size: var(--fs-caption, 12px);
-  font-family: var(--font-caption, var(--font-sans));
-  line-height: 1.5;
+body {
+  padding: 1rem;
+  background-image: url("/images/bg1.jpg");
+  background-position: left top;
+  background-repeat: repeat-y;
+  background-size: contain;
 }
