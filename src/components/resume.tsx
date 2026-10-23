@@ -11,14 +11,15 @@ const Resume = () => {
 
       <article>
         <div>
-          <div className="mb-2 border border-5 border-[mediumslateblue]">
+          <div className="mb-2 border border-5 border-[mediumslateblue] inline-block">
             <Image
               src="/images/resumess.avif"
               alt="Lakshya Mahawar Resume Preview"
-              width={460}
-              height={650}
+              width={500}
+              height={1000}
               loading="eager"
-              quality={75}
+              fetchPriority="high"
+              quality={100}
               style={{ width: "100%", height: "auto" }}
             />
           </div>

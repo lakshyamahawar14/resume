@@ -17,14 +17,15 @@ const Projects = () => {
           <article key={index} className="mb-2">
             <div>
               {project.image && (
-                <div className="border border-5 border-[lightskyblue]">
+                <div className="border border-5 border-[lightskyblue] inline-block">
                   <Image
                     src={project.image}
                     alt={project.title}
-                    width={460}
-                    height={280}
+                    width={500}
+                    height={1000}
                     loading="eager"
-                    quality={75}
+                    fetchPriority="high"
+                    quality={100}
                     style={{ width: "100%", height: "auto" }}
                   />
                 </div>

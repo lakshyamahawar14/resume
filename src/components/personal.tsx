@@ -21,16 +21,15 @@ const Personal = () => {
     <section>
       {PERSONAL_DETAILS.map((person: PersonalItem, index: number) => (
         <div key={index} className="flex items-center justify-center flex-col gap-2">
-          <div>
+          <div className="inline-block">
             <Image
               src={person.image}
               alt={`${person.name} profile photo`}
-              width={200}
-              height={200}
+              width={300}
+              height={300}
               loading="eager"
-              priority={true}
-              quality={75}
-              style={{ width: "auto", height: "auto" }}
+              fetchPriority="high"
+              quality={100}
               className="rounded-full border border-5 border-[magenta]"
             />
           </div>

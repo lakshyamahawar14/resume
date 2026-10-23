@@ -26,11 +26,13 @@ const Background = () => {
           <h3 className="text-center font-bold mt-3 py-3 bg-[crimson]">Education</h3>
           <div className="grid grid-cols-2 gap-2 bg-[purple] text-[white]">
             {EDUCATION.map((edu: EducationItem, index: number) => (
-              <div key={index}>
+              <div key={index} className="p-1">
                 <div>
-                  <h4>{edu.title}</h4>
-                  <p>{edu.subtitle}</p>
-                  <time>{edu.year}</time>
+                  <div className="flex justify-between gap-2">
+                    <h4>{edu.title}</h4>
+                    <time className="text-end text-[khaki]">{edu.year}</time>
+                  </div>
+                  <p className="font-semibold">{edu.subtitle}</p>
                 </div>
                 <footer>
                   <span>

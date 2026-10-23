@@ -1,13 +1,19 @@
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-}
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-body {
-  padding: 1rem;
-  background-image: url("/images/bg1.jpg");
-  background-position: left top;
-  background-repeat: repeat-y;
-  background-size: contain;
+  body {
+    padding: 1rem;
+    background-image: url("/images/bg1.jpg");
+    background-position: center top;
+    background-repeat: repeat;
+    background-size: auto;
+  }
 }

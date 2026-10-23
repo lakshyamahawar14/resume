@@ -11,8 +11,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log('layout.tsx rendered!');
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="preload"
+          as="image"
+          href="/images/bg1.jpg"
+          type="image/jpeg"
+          fetchPriority="high"
+        />
+      </head>
       <body>{children}</body>
     </html>
   );
