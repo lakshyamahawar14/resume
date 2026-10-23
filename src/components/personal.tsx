@@ -43,7 +43,7 @@ const Personal = () => {
             </header>
 
             <article>
-              <span className="font-semibold bg-[red] px-3">About</span>
+              <span className="font-semibold bg-[red] block">About</span>
               <p className="bg-[yellow]">{person.about}</p>
             </article>
 
